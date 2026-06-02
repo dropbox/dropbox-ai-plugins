@@ -1,13 +1,12 @@
 from __future__ import annotations
 
+import json
 import re
 
 from pathlib import Path
 from typing import Any, Iterable
 
-from dropbox import json, runfiles
-
-PACKAGE_LABEL = "//atlas/chatgpt_app/dropbox-ai-plugins"
+REPO_ROOT = Path(__file__).resolve().parent
 
 EXPECTED_MCP_ENDPOINTS = {
     "claude/.mcp.json": {
@@ -25,20 +24,22 @@ MANIFEST_PATHS = [
     Path("codex/.codex-plugin/plugin.json"),
 ]
 
-TEST_ONLY_RUNFILES = {
-    Path("BUILD.in"),
-    Path("package_validation_tests.py"),
-}
-
-TEST_ONLY_RUNFILE_PATTERNS = [
-    re.compile(r"^__pycache__/package_validation_tests\."),
+PUBLIC_PACKAGE_PATHS = [
+    Path("README.md"),
+    Path("LICENSE"),
+    Path("claude"),
+    Path("codex"),
+    Path("shared"),
+    Path("releases"),
 ]
 
-REPO_ONLY_RUNFILE_PATTERNS = [
-    re.compile(r"^BUILD$"),
-    re.compile(r"^dropbox_ai_plugins_tests\.py$"),
-    re.compile(r"^package_validation_tests\.py$"),
+REPO_ONLY_FILE_PATTERNS = [
+    re.compile(r"(^|/)BUILD(?:\.in)?$"),
+    re.compile(r"(^|/)dropbox_ai_plugins_tests\.py$"),
+    re.compile(r"(^|/)package_validation_tests\.py$"),
     re.compile(r"^temp/"),
+    re.compile(r"(^|/)__pycache__/"),
+    re.compile(r"(^|/)\.DS_Store$"),
 ]
 
 
@@ -71,7 +72,7 @@ DISALLOWED_PUBLIC_PATTERNS = [
 
 
 def _package_root() -> Path:
-    return Path(runfiles.data_path(f"{PACKAGE_LABEL}/README.md")).parent
+    return REPO_ROOT
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -121,25 +122,14 @@ def _iter_manifest_path_references(manifest: dict[str, Any]) -> Iterable[str]:
 
 
 def _iter_public_package_files(package_root: Path) -> Iterable[Path]:
-    for path in sorted(package_root.rglob("*")):
-        if not path.is_file():
+    for relative_package_path in PUBLIC_PACKAGE_PATHS:
+        package_path = package_root / relative_package_path
+        if package_path.is_file():
+            yield package_path
             continue
-        relative_path = path.relative_to(package_root)
-        relative_runfile_path = _relative_runfile_path(package_root, path)
-        if _is_test_only_runfile(relative_path, relative_runfile_path):
-            continue
-        yield path
-
-
-def _relative_runfile_path(package_root: Path, path: Path) -> str:
-    return path.relative_to(package_root).as_posix()
-
-
-def _is_test_only_runfile(relative_path: Path, relative_runfile_path: str) -> bool:
-    return relative_path in TEST_ONLY_RUNFILES or any(
-        pattern.search(relative_runfile_path)
-        for pattern in TEST_ONLY_RUNFILE_PATTERNS
-    )
+        for path in sorted(package_path.rglob("*")):
+            if path.is_file():
+                yield path
 
 
 def test_provider_json_files_are_valid() -> None:
@@ -189,25 +179,20 @@ def test_mcp_configs_use_only_production_dropbox_endpoints() -> None:
         )
 
 
-def test_plugin_filegroup_excludes_repo_only_runfiles() -> None:
+def test_public_package_paths_exclude_repo_only_files() -> None:
     package_root = _package_root()
-    repo_only_runfiles = []
-    for path in sorted(package_root.rglob("*")):
-        if not path.is_file():
-            continue
-        relative_path = path.relative_to(package_root)
-        relative_runfile_path = _relative_runfile_path(package_root, path)
-        if _is_test_only_runfile(relative_path, relative_runfile_path):
-            continue
+    repo_only_files = []
+    for path in _iter_public_package_files(package_root):
+        relative_path = path.relative_to(package_root).as_posix()
         if any(
-            pattern.search(relative_runfile_path)
-            for pattern in REPO_ONLY_RUNFILE_PATTERNS
+            pattern.search(relative_path)
+            for pattern in REPO_ONLY_FILE_PATTERNS
         ):
-            repo_only_runfiles.append(relative_runfile_path)
+            repo_only_files.append(relative_path)
 
-    assert not repo_only_runfiles, (
-        "plugin_files must not expose repo-only files in package runfiles:\n"
-        + "\n".join(repo_only_runfiles)
+    assert not repo_only_files, (
+        "Public plugin package paths must not include repo-only files:\n"
+        + "\n".join(repo_only_files)
     )
 
 
@@ -227,3 +212,18 @@ def test_public_package_files_do_not_contain_private_or_secret_material() -> Non
         "Public plugin package files must not contain private URLs, local paths, "
         "or secret-looking values:\n" + "\n".join(failures)
     )
+
+
+def _run_tests() -> None:
+    tests = [
+        (name, test)
+        for name, test in sorted(globals().items())
+        if name.startswith("test_") and callable(test)
+    ]
+    for _, test in tests:
+        test()
+    print(f"{Path(__file__).name}: {len(tests)} tests passed")
+
+
+if __name__ == "__main__":
+    _run_tests()

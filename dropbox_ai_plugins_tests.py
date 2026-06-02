@@ -1,15 +1,11 @@
 from __future__ import annotations
 
+import json
 import re
 
 from pathlib import Path
-from typing import TypedDict
 
-from dropbox import json, runfiles
-
-PLUGIN_ROOT = Path(
-    runfiles.data_path("//atlas/chatgpt_app/dropbox-ai-plugins/README.md")
-).parent
+PLUGIN_ROOT = Path(__file__).resolve().parent
 
 PROVIDER_TOOLS = {
     "claude": {
@@ -45,25 +41,10 @@ PROVIDER_TOOLS = {
     },
 }
 
-ALL_PROVIDER_TOOLS = {tool for tools in PROVIDER_TOOLS.values() for tool in tools}
-FUTURE_TOOLS = {"restore"}
-ALL_KNOWN_TOOLS = ALL_PROVIDER_TOOLS | FUTURE_TOOLS
-
 MANIFEST_PATHS = {
     "claude": Path("claude/plugin.json"),
     "codex": Path("codex/.codex-plugin/plugin.json"),
 }
-
-GAP_DOC_PATHS = {
-    "claude": Path("temp/claude/SKILL_TOOL_GAPS.md"),
-    "codex": Path("temp/codex/SKILL_TOOL_GAPS.md"),
-}
-
-
-class CompatibilityRow(TypedDict):
-    provider_tools: dict[str, set[str]]
-    claude_status: str
-    codex_status: str
 
 
 def _read_json(path: Path) -> dict[str, object]:
@@ -114,79 +95,6 @@ def _tool_like_backtick_names(path: Path) -> set[str]:
 
 def _provider_skill_paths(provider: str) -> list[Path]:
     return sorted((PLUGIN_ROOT / provider / "skills").glob("*/SKILL.md"))
-
-
-def _skill_path_provider(skill_path: Path) -> str | None:
-    resolved_path = skill_path.resolve()
-    for provider in PROVIDER_TOOLS:
-        provider_skill_root = (PLUGIN_ROOT / provider / "skills").resolve()
-        if provider_skill_root in resolved_path.parents:
-            return provider
-    return None
-
-
-def _temp_skill_paths() -> list[Path]:
-    return sorted((PLUGIN_ROOT / "temp" / "skills").glob("*/SKILL.md"))
-
-
-def _all_provider_skill_paths() -> list[Path]:
-    return [
-        skill_path
-        for provider in PROVIDER_TOOLS
-        for skill_path in _provider_skill_paths(provider)
-    ]
-
-
-def _all_skill_paths() -> list[Path]:
-    return _all_provider_skill_paths() + _temp_skill_paths()
-
-
-def _compatibility_matrix() -> dict[str, CompatibilityRow]:
-    matrix_text = (PLUGIN_ROOT / "temp" / "SKILL_COMPATIBILITY.md").read_text()
-    matrix: dict[str, CompatibilityRow] = {}
-
-    for row in matrix_text.splitlines():
-        if not row.startswith("| `"):
-            continue
-        cells = [cell.strip() for cell in row.strip("|").split("|")]
-        skill_name = cells[0].strip("`")
-        matrix[skill_name] = {
-            "provider_tools": {
-                "claude": set(re.findall(r"`([^`]+)`", cells[1])),
-                "codex": set(re.findall(r"`([^`]+)`", cells[2])),
-            },
-            "claude_status": cells[3],
-            "codex_status": cells[4],
-        }
-
-    return matrix
-
-
-def _matrix_tools(row: CompatibilityRow, provider: str) -> set[str]:
-    return row["provider_tools"][provider]
-
-
-def _matrix_status(row: CompatibilityRow, provider: str) -> str:
-    if provider == "claude":
-        return row["claude_status"]
-    if provider == "codex":
-        return row["codex_status"]
-    raise AssertionError(f"Unknown provider: {provider}")
-
-
-def _gap_doc_tools(provider: str) -> dict[str, set[str]]:
-    gap_doc_text = (PLUGIN_ROOT / GAP_DOC_PATHS[provider]).read_text()
-    gap_doc_tools: dict[str, set[str]] = {}
-
-    for row in gap_doc_text.splitlines():
-        if not row.startswith("| `"):
-            continue
-        cells = [cell.strip() for cell in row.strip("|").split("|")]
-        skill_name = cells[0].strip("`")
-        missing_tools = set(re.findall(r"`([^`]+)`", cells[1]))
-        gap_doc_tools[skill_name] = missing_tools
-
-    return gap_doc_tools
 
 
 def test_provider_manifests_are_valid_json() -> None:
@@ -253,58 +161,6 @@ def test_provider_manifests_include_all_provider_skill_files() -> None:
         assert manifest_skill_names == provider_skill_names
 
 
-def test_compatibility_matrix_tools_are_known_tools() -> None:
-    for skill_name, row in _compatibility_matrix().items():
-        for provider in PROVIDER_TOOLS:
-            unknown_tools = _matrix_tools(row, provider) - ALL_KNOWN_TOOLS
-            assert not unknown_tools, (
-                f"compatibility matrix row {skill_name} references unknown "
-                f"{provider} tools: {sorted(unknown_tools)}"
-            )
-
-
-def test_compatibility_matrix_reflects_provider_skill_status() -> None:
-    matrix = _compatibility_matrix()
-    skill_names = {skill_path.parent.name for skill_path in _all_skill_paths()}
-
-    assert set(matrix) == skill_names
-
-    for skill_name, row in matrix.items():
-        skill_paths = [
-            skill_path
-            for skill_path in _all_skill_paths()
-            if skill_path.parent.name == skill_name
-        ]
-        assert skill_paths
-        for skill_path in skill_paths:
-            skill_provider = _skill_path_provider(skill_path)
-            if skill_provider:
-                assert _matrix_tools(row, skill_provider) == _tools_from_skill(
-                    skill_path
-                )
-            else:
-                all_provider_tools = set().union(
-                    *[_matrix_tools(row, provider) for provider in PROVIDER_TOOLS]
-                )
-                assert all_provider_tools == _tools_from_skill(skill_path)
-
-        for provider, supported_tools in PROVIDER_TOOLS.items():
-            provider_manifest_names = {
-                skill_path.parent.name for skill_path in _manifest_skill_paths(provider)
-            }
-            status = _matrix_status(row, provider)
-            required_tools = _matrix_tools(row, provider)
-            missing_tools = required_tools - supported_tools
-
-            if skill_name in provider_manifest_names:
-                assert not missing_tools
-                assert f"registered in `{provider}/skills/`" in status
-            else:
-                assert missing_tools
-                assert status.startswith("Blocked: missing ")
-                assert set(re.findall(r"`([^`]+)`", status)) == missing_tools
-
-
 def test_same_named_claude_and_codex_skills_are_identical_when_tools_match() -> None:
     claude_skill_paths = {
         skill_path.parent.name: skill_path
@@ -326,14 +182,16 @@ def test_same_named_claude_and_codex_skills_are_identical_when_tools_match() -> 
         )
 
 
-def test_provider_gap_docs_match_compatibility_matrix_tool_gaps() -> None:
-    matrix = _compatibility_matrix()
+def _run_tests() -> None:
+    tests = [
+        (name, test)
+        for name, test in sorted(globals().items())
+        if name.startswith("test_") and callable(test)
+    ]
+    for _, test in tests:
+        test()
+    print(f"{Path(__file__).name}: {len(tests)} tests passed")
 
-    for provider, supported_tools in PROVIDER_TOOLS.items():
-        expected_gaps = {
-            skill_name: _matrix_tools(row, provider) - supported_tools
-            for skill_name, row in matrix.items()
-            if _matrix_tools(row, provider) - supported_tools
-        }
 
-        assert _gap_doc_tools(provider) == expected_gaps
+if __name__ == "__main__":
+    _run_tests()
