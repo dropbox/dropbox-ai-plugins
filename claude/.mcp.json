@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "claude_app_mcp": {
+      "type": "http",
+      "url": "https://mcp.dropbox.com/claude_app_mcp"
+    }
+  }
+}

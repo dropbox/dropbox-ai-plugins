@@ -1,0 +1,42 @@
+{
+  "name": "dropbox",
+  "version": "1.0.0",
+  "description": "Access your Dropbox files, save new content, and generate sharing links — all from within Claude. Your existing permissions stay in place, so Claude only works with what you have access to.",
+  "author": {
+    "name": "Dropbox"
+  },
+  "homepage": "https://www.dropbox.com",
+  "license": "Apache-2.0",
+  "keywords": [
+    "dropbox",
+    "files",
+    "storage",
+    "cloud",
+    "cloud storage",
+    "save",
+    "upload",
+    "download",
+    "share",
+    "sharing",
+    "sync",
+    "folder",
+    "folders",
+    "documents",
+    "docs",
+    "content",
+    "links",
+    "permissions",
+    "organize",
+    "search",
+    "retrieve",
+    "manage",
+    "import",
+    "export"
+  ],
+  "mcpServers": "./.mcp.json",
+  "skills": [
+    "./skills/find-dropbox-content/SKILL.md",
+    "./skills/inspect-dropbox-file/SKILL.md",
+    "./skills/share-dropbox-content/SKILL.md"
+  ]
+}
