@@ -35,7 +35,7 @@ PUBLIC_PACKAGE_PATHS = [
 
 REPO_ONLY_FILE_PATTERNS = [
     re.compile(r"(^|/)BUILD(?:\.in)?$"),
-    re.compile(r"(^|/)dropbox_ai_plugins_tests\.py$"),
+    re.compile(r"(^|/)provider_skills_tests\.py$"),
     re.compile(r"(^|/)package_validation_tests\.py$"),
     re.compile(r"^temp/"),
     re.compile(r"(^|/)__pycache__/"),
