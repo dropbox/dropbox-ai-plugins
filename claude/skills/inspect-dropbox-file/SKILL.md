@@ -1,6 +1,6 @@
 ---
 name: inspect-dropbox-file
-description: Inspect a Dropbox file or folder by checking metadata and file content when needed. Use when the user asks what a file is, when it changed, or asks to read/analyze a Dropbox file.
+description: Inspect a Dropbox file or folder by checking metadata, shared links, and file content when needed. Use when the user asks what a file is, whether it is shared, when it changed, what access links exist, or asks to read/analyze a Dropbox file.
 ---
 
 # Inspect Dropbox File
@@ -11,6 +11,8 @@ Use this skill to understand a Dropbox file or folder before summarizing, compar
 
 - `get_file_metadata`
 - `fetch`
+- `list_shared_links`
+- `get_shared_link_metadata`
 - `search`
 - `list_folder`
 
@@ -21,7 +23,8 @@ Use this skill to understand a Dropbox file or folder before summarizing, compar
 3. Call `get_file_metadata` for the chosen item.
 4. If the user asks about content, summary, extraction, or analysis, use `fetch` for files.
 5. If the user asks about version history or rollback options, explain that the current Dropbox MCP tools do not expose revision listing or restore operations.
-6. If the user asks about sharing, access links, or a specific Dropbox shared link, explain that Claude cannot inspect Dropbox shared-link state until those MCP tools are available.
+6. If the user asks about sharing or access, use `list_shared_links`; continue while the response indicates has_more or returns a cursor before claiming the shared-link listing is complete.
+7. If the user provides a Dropbox shared link or asks about a specific link, use `get_shared_link_metadata`.
 
 ## Output
 
@@ -30,7 +33,7 @@ Summarize only the details relevant to the user request. Include:
 - Name and path
 - File or folder type
 - Size and modified time when available
-- Shared-link limitation when relevant
+- Sharing/link status when relevant, including whether shared-link pagination is complete
 - Version-history limitation when relevant
 - Fetched content summary when relevant
 - Recommended next action, if the user asked for one
@@ -50,6 +53,6 @@ This is a read-only workflow. Do not create links, change sharing, copy, move, d
 ## Do Not Use When
 
 - The user only wants to search or browse. Use `find-dropbox-content`.
-- The user wants to create a shared link. Use `share-dropbox-content`.
-- The user wants to inspect existing shared links or add recipients. Explain that Claude cannot inspect or manage shared-link state until the required MCP tools are exposed.
+- The user wants to create a shared link or inspect shared-link state. Use `share-dropbox-content`.
+- The user wants to add viewers or share directly with named recipients. Explain that recipient-sharing is unavailable until the required MCP tools are exposed.
 - The user wants to restore a revision. Explain that recovery is unavailable until the Dropbox restore tool is exposed.

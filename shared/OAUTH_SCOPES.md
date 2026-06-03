@@ -19,10 +19,10 @@ The OAuth authorization server is Dropbox. The plugin artifacts must not include
 | `files.metadata.read` | Search, list folders, and read file or folder metadata. | Yes | Yes |
 | `files.content.read` | Fetch file text content and generate download metadata. | Yes | Yes |
 | `files.content.write` | Create files, create folders, move files, copy files, delete files, and check async file-operation jobs. | Yes | Yes |
-| `sharing.read` | List shared links and read shared-link metadata. | Yes | No |
+| `sharing.read` | List shared links and read shared-link metadata. | Yes | Yes |
 | `sharing.write` | Create shared links. | Yes | Yes |
-| `file_requests.read` | List and inspect file requests. | Yes | No |
-| `file_requests.write` | Create file requests. | Yes | No |
+| `file_requests.read` | List and inspect file requests. | Yes | Yes |
+| `file_requests.write` | Create file requests. | Yes | Yes |
 
 ## Codex Tool Scope Mapping
 
@@ -59,11 +59,22 @@ The Claude artifact points at `claude_app_mcp`.
 | `search` | `files.metadata.read` | Read-only search over Dropbox file metadata. |
 | `list_folder` | `files.metadata.read` | Read-only folder listing. |
 | `get_file_metadata` | `files.metadata.read` | Read-only metadata lookup. |
+| `get_shared_link_metadata` | `sharing.read` | Read-only shared-link metadata lookup. |
+| `who_am_i` | `account_info.read` | Read-only account identity check. |
+| `list_shared_links` | `sharing.read` | Read-only shared-link listing. |
+| `list_file_requests` | `file_requests.read` | Read-only file-request listing. |
+| `get_file_request` | `file_requests.read` | Read-only file-request lookup. |
+| `create_file_request` | `file_requests.write` | Creates a Dropbox file request. |
 | `fetch` | `files.content.read` | Reads extracted text content from a file. |
+| `download_link` | `files.content.read` | Creates download metadata for file access. |
 | `file_preview` | `account_info.read` | Reads preview metadata and preview-resource context. |
 | `create_folder` | `files.content.write` | Creates a Dropbox folder. |
 | `create_file` | `files.content.write` | Creates a text-oriented Dropbox file. |
 | `create_shared_link` | `sharing.write` | Creates or reuses a shared link. |
+| `move` | `files.content.write` | Moves Dropbox content. |
+| `copy` | `files.content.write` | Copies Dropbox content. |
+| `delete` | `files.content.write` | Deletes Dropbox content. |
+| `check_job_status` | `files.content.write` | Checks async file-operation job status. |
 
 ## Release Review Checklist
 
@@ -78,7 +89,7 @@ Before provider submission:
 
 ## Known Scope Limitations
 
-- The Claude surface intentionally exposes a smaller tool set than the Codex surface.
+- The Claude and Codex scope inventories are expected to stay aligned for submitted plugin artifacts.
 - Scope support follows the registered MCP tool inventory. Adding or removing a tool can change the protected-resource metadata scope list.
 - `account_info.read` is included even when the visible user action is not an account lookup because identity and preview-resource flows require account context.
 - Read scopes do not allow creating, moving, deleting, or sharing Dropbox content.
