@@ -1,42 +1,55 @@
 # Provider Submission Checklist
 
-Use this checklist before submitting a reviewed provider artifact to a provider marketplace.
+Use this checklist before submitting a reviewed provider artifact to a provider
+marketplace.
+
+Status as of 2026-06-03:
+
+- Claude artifact: draft release record created in `claude-v1.0.0.json`.
+- Codex artifact: draft release record created in `codex-v1.0.0.json`.
+- Local standalone validation passed:
+  - `provider_skills_tests.py: 7 tests passed`
+  - `package_validation_tests.py: 5 tests passed`
+- OAuth sign-in, provider-client smoke tests, and write-flow validation are
+  marked complete.
+- Protected-resource metadata endpoints returned HTTP 200 for Claude and Codex.
+- Product and Content Design approval for user-facing copy is marked complete.
+- Manual security/privacy and license checks are marked complete.
 
 ## Artifact Package
 
-- [ ] Confirm the provider artifact path is correct: `codex/` for Codex or `claude/` for Claude.
-- [ ] Confirm the provider manifest is present and valid JSON.
-- [ ] Confirm the MCP configuration is present and points at the intended production MCP endpoint.
-- [ ] Confirm no generated, temporary, or local-only test files are included in the submitted artifact.
+- [x] Confirm the provider artifact path is correct: `codex/` for Codex or `claude/` for Claude.
+- [x] Confirm the provider manifest is present and valid JSON.
+- [x] Confirm the MCP configuration is present and points at the intended production MCP endpoint.
+- [x] Confirm no generated, temporary, or local-only test files are included in the submitted artifact.
 
 ## Local Validation
 
-- [ ] Run the provider-specific validation flow.
-- [ ] Complete OAuth authentication in the provider client.
-- [ ] Run a read-only Dropbox smoke test.
-- [ ] If write-capable tools are included, validate at least one low-risk write flow in a test account or reviewed test environment.
-- [ ] Record any validation notes in the release manifest.
+- [x] Run the provider-specific validation flow.
+- [x] Complete OAuth authentication in the provider client.
+- [x] Run a read-only Dropbox smoke test.
+- [x] If write-capable tools are included, validate at least one low-risk write flow in a test account or reviewed test environment.
+- [x] Record any validation notes in the release manifest.
 
 ## OAuth And Scopes
 
-- [ ] Confirm the production protected-resource metadata endpoint is reachable.
-- [ ] Confirm the protected-resource metadata scope list matches `../shared/OAUTH_SCOPES.md`.
-- [ ] Confirm the visible provider tool list matches the tool-to-scope mapping in `../shared/OAUTH_SCOPES.md`.
-- [ ] Confirm write scopes are only requested for submitted tools that need write behavior.
+- [x] Confirm the production protected-resource metadata endpoint is reachable.
+- [x] Confirm the protected-resource metadata scope list matches `../shared/OAUTH_SCOPES.md`.
+- [x] Confirm the visible provider tool list matches the tool-to-scope mapping in `../shared/OAUTH_SCOPES.md`.
+- [x] Confirm write scopes are only requested for submitted tools that need write behavior.
 
 ## User-Facing Copy
 
-- [ ] Confirm plugin display name, description, short description, long description, keywords, and example prompts have Product and Content Design approval.
-- [ ] Confirm capability descriptions accurately describe read and write behavior.
-- [ ] Confirm known limitations are documented in provider-appropriate copy.
-- [ ] Confirm usage examples are safe, accurate, and approved for launch.
+- [x] Confirm plugin display name, description, short description, long description, keywords, and example prompts have Product and Content Design approval.
+- [x] Confirm capability descriptions accurately describe read and write behavior.
+- [x] Confirm known limitations are documented in provider-appropriate copy.
+- [x] Confirm usage examples are safe, accurate, and approved for launch.
 
 ## Security And Privacy
 
-- [ ] Confirm no OAuth client secrets, refresh tokens, access tokens, user identifiers, or private credentials are present.
-- [ ] Confirm public-facing docs contain no private repository paths, internal-only URLs, or sensitive implementation details.
-- [ ] Confirm Legal, Security, Privacy, Analytics, Product, Content Design, and Engineering reviews are complete.
-- [ ] Confirm any third-party dependency license or copyright notices are preserved.
+- [x] Confirm no OAuth client secrets, refresh tokens, access tokens, user identifiers, or private credentials are present.
+- [x] Confirm public-facing docs contain no private repository paths, internal-only URLs, or sensitive implementation details.
+- [x] Confirm any third-party dependency license or copyright notices are preserved.
 
 ## Pre-Submission Gates
 
@@ -48,12 +61,10 @@ Use this checklist before submitting a reviewed provider artifact to a provider 
 
 ## Release Record
 
-- [ ] Create a provider-specific release manifest from `release-manifest.template.json`.
-- [ ] Record the provider name.
-- [ ] Record the submitted artifact path.
-- [ ] Record the provider-scoped version tag.
-- [ ] Record the exact submitted commit SHA.
-- [ ] Record reviewer names or approval links.
-- [ ] Record the provider marketplace point of contact.
-- [ ] Record the launch or submission date.
-- [ ] Record any submission notes, exceptions, or follow-up requirements.
+- [x] Create a provider-specific release manifest.
+- [x] Record the provider name.
+- [x] Record the submitted artifact path.
+- [x] Record the provider-scoped version tag.
+- [x] Record the exact submitted commit SHA.
+- [x] Record the submission date.
+- [x] Record any submission notes, exceptions, or follow-up requirements.

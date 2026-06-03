@@ -85,7 +85,7 @@ Before provider submission:
 - Confirm all write-capable tools have user-facing descriptions that make the write behavior clear.
 - Confirm the submitted plugin metadata describes both read and write capabilities.
 - Confirm no OAuth client secrets, refresh tokens, access tokens, or user identifiers are included in the submitted artifact.
-- Record the submitted commit SHA in `releases/release-manifest.template.json` or the provider-specific release manifest created from it.
+- Record the submitted commit SHA in the provider-specific release manifest under `releases/`.
 
 ## Known Scope Limitations
 

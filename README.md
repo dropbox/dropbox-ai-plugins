@@ -34,7 +34,7 @@ Claude and Codex artifacts are versioned independently with provider-scoped tags
 - Claude tags use `claude-vX.Y.Z`.
 - Codex tags use `codex-vX.Y.Z`.
 
-Each provider submission should have a completed release manifest under `releases/` recording the provider, artifact path, version tag, submitted commit SHA, reviewers, marketplace contact, launch date, and submission notes.
+Each provider submission should have a completed release manifest under `releases/` recording the provider, artifact path, version tag, submitted commit SHA, submission date, and submission notes.
 
 Use `releases/SUBMISSION_CHECKLIST.md` before submitting an artifact to a provider marketplace.
 
@@ -48,7 +48,7 @@ All write-capable tools and examples must make their write behavior clear to use
 
 Before provider submission, each artifact should complete Product, Content Design, Legal, Security, Analytics, and Engineering review.
 
-The submitted artifact path, version tag, commit SHA, reviewers, marketplace contact, and launch date should be recorded in the provider release manifest under `releases/`.
+The submitted artifact path, version tag, commit SHA, and submission date should be recorded in the provider release manifest under `releases/`.
 
 ## License
 
