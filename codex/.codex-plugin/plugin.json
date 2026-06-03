@@ -38,7 +38,7 @@
   "interface": {
     "displayName": "Dropbox",
     "shortDescription": "Access Dropbox files, save content, and create sharing links in Codex while respecting your existing permissions.",
-    "longDescription": "Access your Dropbox files, save new content, and generate sharing links — all from within Codex. Your existing permissions stay in place, so Codex only works with what you have access to.",
+    "longDescription": "Access your Dropbox files, save new content, and generate sharing links, all from within Codex. Your existing permissions stay in place, so Codex only works with what you have access to.",
     "developerName": "Dropbox",
     "category": "Productivity",
     "capabilities": [

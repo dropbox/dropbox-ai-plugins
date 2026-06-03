@@ -1,7 +1,7 @@
 {
   "name": "dropbox",
   "version": "1.0.0",
-  "description": "Access your Dropbox files, save new content, and generate sharing links — all from within Claude. Your existing permissions stay in place, so Claude only works with what you have access to.",
+  "description": "Access your Dropbox files, save new content, and generate sharing links, all from within Claude. Your existing permissions stay in place, so Claude only works with what you have access to.",
   "author": {
     "name": "Dropbox"
   },
