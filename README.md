@@ -2,6 +2,8 @@
 
 This repository contains Dropbox's AI plugin artifacts for Claude and OpenAI Codex.
 
+Temporary validation PR change.
+
 ## Repository Layout
 
 - `claude/` contains the Claude MCP Host artifact for Claude Code and Claude Cowork.
