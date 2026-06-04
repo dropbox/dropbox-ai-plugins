@@ -1,0 +1,6 @@
+# AppSec review required for provider skill and configuration paths.
+
+*/skills/** @dropbox/appsec
+*/.mcp.json @dropbox/appsec
+*/plugin.json @dropbox/appsec
+/shared/OAUTH_SCOPES.md @dropbox/appsec
