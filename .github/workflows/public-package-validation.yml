@@ -1,0 +1,27 @@
+name: public-package-validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-public-package:
+    name: validate-public-package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run package validation tests
+        run: PYTHONDONTWRITEBYTECODE=1 python3 package_validation_tests.py
+
+      - name: Run MCP host skills tests
+        run: PYTHONDONTWRITEBYTECODE=1 python3 mcp_host_skills_tests.py
