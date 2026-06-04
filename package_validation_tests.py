@@ -30,7 +30,6 @@ PUBLIC_PACKAGE_PATHS = [
     Path("claude"),
     Path("codex"),
     Path("shared"),
-    Path("releases"),
 ]
 
 REPO_ONLY_FILE_PATTERNS = [
@@ -175,7 +174,7 @@ def test_mcp_configs_use_only_production_dropbox_endpoints() -> None:
             f"{relative_path} must use an HTTP MCP server."
         )
         assert server.get("url") == expected["url"], (
-            f"{relative_path} must point at the reviewed production endpoint."
+            f"{relative_path} must point at the production endpoint."
         )
 
 

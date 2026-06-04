@@ -31,7 +31,7 @@ Use it to locate files and folders, summarize supported file content, inspect sh
 3. Review the requested permissions before granting access.
 4. Ask Claude to search, inspect, share, collect, organize, or clean up Dropbox content.
 
-The plugin uses the production Dropbox MCP endpoint configured in `.mcp.json`. Do not add OAuth client secrets, refresh tokens, access tokens, or user tokens to this artifact.
+The plugin uses the production Dropbox MCP endpoint configured in `.mcp.json`.
 
 ## Required OAuth Scopes
 

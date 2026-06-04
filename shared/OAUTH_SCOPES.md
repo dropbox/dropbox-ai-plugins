@@ -9,7 +9,7 @@ This document records the Dropbox OAuth scopes used by the Dropbox MCP plugin ar
 | Codex | `https://mcp.dropbox.com/chatgpt_app_mcp` | `https://mcp.dropbox.com/.well-known/oauth-protected-resource/chatgpt_app_mcp` |
 | Claude | `https://mcp.dropbox.com/claude_app_mcp` | `https://mcp.dropbox.com/.well-known/oauth-protected-resource/claude_app_mcp` |
 
-The OAuth authorization server is Dropbox. The plugin artifacts must not include OAuth client secrets, refresh tokens, or user tokens.
+The OAuth authorization server is Dropbox.
 
 ## Scope Summary
 
@@ -76,20 +76,8 @@ The Claude artifact points at `claude_app_mcp`.
 | `delete` | `files.content.write` | Deletes Dropbox content. |
 | `check_job_status` | `files.content.write` | Checks async file-operation job status. |
 
-## Release Review Checklist
-
-Before MCP Host submission:
-
-- Confirm the scope list against each production protected-resource metadata endpoint.
-- Confirm each MCP Host's visible tool list still matches the tool-to-scope tables above.
-- Confirm all write-capable tools have user-facing descriptions that make the write behavior clear.
-- Confirm the submitted plugin metadata describes both read and write capabilities.
-- Confirm no OAuth client secrets, refresh tokens, access tokens, or user identifiers are included in the submitted artifact.
-- Record the submitted commit SHA in the MCP Host-specific release manifest under `releases/`.
-
 ## Known Scope Limitations
 
-- The Claude and Codex scope inventories are expected to stay aligned for submitted plugin artifacts.
 - Scope support follows the registered MCP tool inventory. Adding or removing a tool can change the protected-resource metadata scope list.
 - `account_info.read` is included even when the visible user action is not an account lookup because identity and preview-resource flows require account context.
 - Read scopes do not allow creating, moving, deleting, or sharing Dropbox content.
