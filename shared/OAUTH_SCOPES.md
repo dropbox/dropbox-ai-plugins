@@ -2,9 +2,9 @@
 
 This document records the Dropbox OAuth scopes used by the Dropbox MCP plugin artifacts for Codex and Claude.
 
-## Provider Surfaces
+## MCP Host Surfaces
 
-| Provider artifact | MCP endpoint | Protected resource metadata |
+| MCP Host artifact | MCP endpoint | Protected resource metadata |
 | --- | --- | --- |
 | Codex | `https://mcp.dropbox.com/chatgpt_app_mcp` | `https://mcp.dropbox.com/.well-known/oauth-protected-resource/chatgpt_app_mcp` |
 | Claude | `https://mcp.dropbox.com/claude_app_mcp` | `https://mcp.dropbox.com/.well-known/oauth-protected-resource/claude_app_mcp` |
@@ -78,14 +78,14 @@ The Claude artifact points at `claude_app_mcp`.
 
 ## Release Review Checklist
 
-Before provider submission:
+Before MCP Host submission:
 
 - Confirm the scope list against each production protected-resource metadata endpoint.
-- Confirm each provider's visible tool list still matches the tool-to-scope tables above.
+- Confirm each MCP Host's visible tool list still matches the tool-to-scope tables above.
 - Confirm all write-capable tools have user-facing descriptions that make the write behavior clear.
 - Confirm the submitted plugin metadata describes both read and write capabilities.
 - Confirm no OAuth client secrets, refresh tokens, access tokens, or user identifiers are included in the submitted artifact.
-- Record the submitted commit SHA in the provider-specific release manifest under `releases/`.
+- Record the submitted commit SHA in the MCP Host-specific release manifest under `releases/`.
 
 ## Known Scope Limitations
 
@@ -93,4 +93,4 @@ Before provider submission:
 - Scope support follows the registered MCP tool inventory. Adding or removing a tool can change the protected-resource metadata scope list.
 - `account_info.read` is included even when the visible user action is not an account lookup because identity and preview-resource flows require account context.
 - Read scopes do not allow creating, moving, deleting, or sharing Dropbox content.
-- Write scopes are required before the provider can create files, folders, links, or file requests.
+- Write scopes are required before the MCP Host can create files, folders, links, or file requests.

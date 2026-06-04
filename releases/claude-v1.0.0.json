@@ -1,5 +1,5 @@
 {
-  "provider": "claude",
+  "mcp_host": "claude",
   "artifact_path": "claude/",
   "version": "1.0.0",
   "version_tag": "claude-v1.0.0",
@@ -8,7 +8,7 @@
   "submission_date": "2026-06-12",
   "validation": {
     "standalone_tests": [
-      "provider_skills_tests.py: 7 tests passed",
+      "mcp_host_skills_tests.py: 7 tests passed",
       "package_validation_tests.py: 5 tests passed"
     ],
     "oauth_authentication": "completed",
@@ -23,5 +23,5 @@
     "private_reference_scan": "completed",
     "third_party_license_notices": "completed"
   },
-  "notes": "Draft release record prepared on 2026-06-03. OAuth authentication, provider-client smoke test, write-flow validation, protected-resource metadata reachability, user-facing copy approval, manual credential/private-reference scans, and license-notice checks are marked complete. Protected-resource metadata endpoint returned HTTP 200. No dependency manifests were found; Apache-2.0 license files are present. Update submitted_sha if release-record edits are included in the final submitted commit."
+  "notes": "Draft release record prepared on 2026-06-03. OAuth authentication, MCP Host client smoke test, write-flow validation, protected-resource metadata reachability, user-facing copy approval, manual credential/private-reference scans, and license-notice checks are marked complete. Protected-resource metadata endpoint returned HTTP 200. No dependency manifests were found; Apache-2.0 license files are present. Update submitted_sha if release-record edits are included in the final submitted commit."
 }

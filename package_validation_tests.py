@@ -35,7 +35,7 @@ PUBLIC_PACKAGE_PATHS = [
 
 REPO_ONLY_FILE_PATTERNS = [
     re.compile(r"(^|/)BUILD(?:\.in)?$"),
-    re.compile(r"(^|/)provider_skills_tests\.py$"),
+    re.compile(r"(^|/)mcp_host_skills_tests\.py$"),
     re.compile(r"(^|/)package_validation_tests\.py$"),
     re.compile(r"^temp/"),
     re.compile(r"(^|/)__pycache__/"),
@@ -81,7 +81,7 @@ def _load_json(path: Path) -> dict[str, Any]:
     return value
 
 
-def _provider_root_for_manifest(package_root: Path, manifest_path: Path) -> Path:
+def _mcp_host_root_for_manifest(package_root: Path, manifest_path: Path) -> Path:
     if manifest_path.parts[:2] == ("codex", ".codex-plugin"):
         return package_root / "codex"
     return package_root / manifest_path.parts[0]
@@ -94,7 +94,7 @@ def _resolve_relative_path(root: Path, raw_path: str) -> Path:
     resolved = (root / raw_path.removeprefix("./")).resolve()
     root_resolved = root.resolve()
     assert root_resolved == resolved or root_resolved in resolved.parents, (
-        f"Manifest path escapes provider root: {raw_path!r}"
+        f"Manifest path escapes MCP Host root: {raw_path!r}"
     )
     return resolved
 
@@ -132,7 +132,7 @@ def _iter_public_package_files(package_root: Path) -> Iterable[Path]:
                 yield path
 
 
-def test_provider_json_files_are_valid() -> None:
+def test_mcp_host_json_files_are_valid() -> None:
     package_root = _package_root()
     for relative_path in [
         *MANIFEST_PATHS,
@@ -143,13 +143,13 @@ def test_provider_json_files_are_valid() -> None:
         _load_json(path)
 
 
-def test_provider_manifest_path_references_are_valid() -> None:
+def test_mcp_host_manifest_path_references_are_valid() -> None:
     package_root = _package_root()
     for manifest_path in MANIFEST_PATHS:
         manifest = _load_json(package_root / manifest_path)
-        provider_root = _provider_root_for_manifest(package_root, manifest_path)
+        mcp_host_root = _mcp_host_root_for_manifest(package_root, manifest_path)
         for raw_path in _iter_manifest_path_references(manifest):
-            resolved_path = _resolve_relative_path(provider_root, raw_path)
+            resolved_path = _resolve_relative_path(mcp_host_root, raw_path)
             assert resolved_path.exists(), (
                 f"{manifest_path} references a missing path: {raw_path}"
             )
