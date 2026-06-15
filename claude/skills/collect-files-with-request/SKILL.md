@@ -21,18 +21,20 @@ Use this skill to help users collect files from others through Dropbox file requ
 
 1. Determine whether the user wants to create a new file request, inspect one request, or list existing requests.
 2. For a new request, identify the destination folder.
-3. If the destination folder does not exist and the user wants it created, use `create_folder` only after explicit confirmation.
-4. Before calling `create_file_request`, confirm the title, destination folder, deadline if applicable, and whether the request should be open or closed if that option is available.
-5. Use `get_file_request` for a known raw request ID.
-6. Use `list_file_requests` when the user asks for existing requests or cannot identify one.
-7. After creating or finding a request, explain the request URL and where uploaded files will land.
+3. Do not use a team root, such as `/`, or the user's personal root, such as `/FirstName LastName`, as the destination. Dropbox requires the file request destination to be a child folder under that folder, such as `/FirstName LastName/Invoices`.
+4. If the requested destination is a team root or the user's personal root, ask the user to confirm a child folder under that folder.
+5. If the destination folder does not exist and the user wants it created, use `create_folder` only after explicit confirmation.
+6. Before calling `create_file_request`, confirm the title, destination folder, deadline if applicable, and whether the request should be open or closed if that option is available.
+7. Use `get_file_request` for a known raw request ID.
+8. Use `list_file_requests` when the user asks for existing requests or cannot identify one.
+9. After creating or finding a request, explain the request URL and where uploaded files will land.
 
 ## Confirmation Required
 
 Before creating a file request, confirm:
 
 - Request title
-- Destination folder
+- Destination folder, confirmed to be a child folder under any requested team root or the user's personal root
 - Deadline, if requested
 - Any access or open/closed setting supported by the tool
 
@@ -40,6 +42,7 @@ Before creating a destination folder, confirm:
 
 - Exact folder path
 - Whether parent folders already exist
+- That the folder is not a team root, such as `/`, or the user's personal root
 
 ## Output
 
@@ -54,7 +57,7 @@ Return:
 
 ## Safety
 
-Do not create folders or file requests without explicit confirmation. Do not assume uploaded files are private or reviewed; describe the destination and access implications clearly.
+Do not create folders or file requests without explicit confirmation. Do not assume uploaded files are private or reviewed; describe the destination and access implications clearly. Dropbox does not allow file requests at a team root, such as `/`, or the user's personal root; ask the user to confirm a child folder under that folder and do not retry with a guessed folder.
 
 ## Good Triggers
 
