@@ -53,7 +53,7 @@ MCP_HOST_TOOLS = {
 }
 
 MANIFEST_PATHS = {
-    "claude": Path("claude/plugin.json"),
+    "claude": Path("claude/.claude-plugin/plugin.json"),
     "codex": Path("codex/.codex-plugin/plugin.json"),
 }
 
@@ -62,15 +62,20 @@ def _read_json(path: Path) -> dict[str, object]:
     return json.loads((PLUGIN_ROOT / path).read_text())
 
 
+def _manifest_skill_path(mcp_host_root: Path, raw_path: str) -> Path:
+    skill_path = (mcp_host_root / raw_path.removeprefix("./")).resolve()
+    if skill_path.name != "SKILL.md":
+        skill_path /= "SKILL.md"
+    return skill_path
+
+
 def _manifest_skill_paths(mcp_host: str) -> list[Path]:
     manifest = _read_json(MANIFEST_PATHS[mcp_host])
     skills = manifest.get("skills", [])
     mcp_host_root = PLUGIN_ROOT / mcp_host
 
     if isinstance(skills, list):
-        return [
-            (mcp_host_root / skill.removeprefix("./")).resolve() for skill in skills
-        ]
+        return [_manifest_skill_path(mcp_host_root, skill) for skill in skills]
 
     if isinstance(skills, str):
         skill_dir = mcp_host_root / skills.removeprefix("./")
