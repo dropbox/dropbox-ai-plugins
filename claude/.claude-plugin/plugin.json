@@ -35,11 +35,11 @@
   ],
   "mcpServers": "./.mcp.json",
   "skills": [
-    "./skills/clean-up-dropbox-content/SKILL.md",
-    "./skills/collect-files-with-request/SKILL.md",
-    "./skills/find-dropbox-content/SKILL.md",
-    "./skills/inspect-dropbox-file/SKILL.md",
-    "./skills/organize-dropbox-folder/SKILL.md",
-    "./skills/share-dropbox-content/SKILL.md"
+    "./skills/clean-up-dropbox-content",
+    "./skills/collect-files-with-request",
+    "./skills/find-dropbox-content",
+    "./skills/inspect-dropbox-file",
+    "./skills/organize-dropbox-folder",
+    "./skills/share-dropbox-content"
   ]
 }
