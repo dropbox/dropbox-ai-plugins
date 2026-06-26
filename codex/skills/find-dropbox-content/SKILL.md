@@ -1,6 +1,7 @@
 ---
 name: find-dropbox-content
 description: Find Dropbox files and folders relevant to a user request. Use when the user asks to search Dropbox, find a document, locate recent files, browse a folder, identify likely source files, or narrow down where content lives before reading, sharing, organizing, or restoring it.
+disable-model-invocation: false
 ---
 
 # Find Dropbox Content
