@@ -20,7 +20,7 @@ EXPECTED_MCP_ENDPOINTS = {
 }
 
 MANIFEST_PATHS = [
-    Path("claude/plugin.json"),
+    Path("claude/.claude-plugin/plugin.json"),
     Path("codex/.codex-plugin/plugin.json"),
 ]
 
