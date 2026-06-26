@@ -1,7 +1,7 @@
 ---
 name: share-dropbox-content
 description: Share Dropbox files or folders by creating shared links, inspecting existing shared links, or explaining current shared-link state. Use only when the user explicitly asks to create a shared link, check access, or inspect a Dropbox shared link.
-disable-model-invocation: true
+disable-model-invocation: false
 ---
 
 # Share Dropbox Content

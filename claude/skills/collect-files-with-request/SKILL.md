@@ -1,7 +1,7 @@
 ---
 name: collect-files-with-request
 description: Create, inspect, and manage Dropbox file requests for collecting uploads from other people. Use when the user asks to collect files, request uploads, create an upload portal, check a file request, or list existing file requests.
-disable-model-invocation: true
+disable-model-invocation: false
 ---
 
 # Collect Files With Request

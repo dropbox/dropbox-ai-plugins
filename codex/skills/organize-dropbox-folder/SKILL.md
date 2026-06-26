@@ -1,7 +1,7 @@
 ---
 name: organize-dropbox-folder
 description: Organize Dropbox files and folders by creating folders, copying content, or moving content into a cleaner structure. Use when the user asks to organize, archive, consolidate, restructure, copy, or move Dropbox content.
-disable-model-invocation: true
+disable-model-invocation: false
 ---
 
 # Organize Dropbox Folder
