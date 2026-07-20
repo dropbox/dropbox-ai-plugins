@@ -1,0 +1,42 @@
+{
+  "name": "dropbox",
+  "displayName": "Dropbox",
+  "description": "The Dropbox plugin for Cursor connects your Dropbox files directly to Cursor, so you can search, organize, save generated content, and create sharing links without switching tools. It respects your existing Dropbox permissions, and Cursor only works with files you already have access to.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Dropbox"
+  },
+  "publisher": "Dropbox",
+  "homepage": "https://www.dropbox.com",
+  "repository": "https://github.com/dropbox/dropbox-ai-plugins/tree/main/cursor",
+  "license": "Apache-2.0",
+  "keywords": [
+    "dropbox",
+    "files",
+    "storage",
+    "cloud",
+    "cloud storage",
+    "save",
+    "upload",
+    "download",
+    "share",
+    "sharing",
+    "sync",
+    "folder",
+    "folders",
+    "documents",
+    "docs",
+    "content",
+    "links",
+    "permissions",
+    "organize",
+    "search",
+    "retrieve",
+    "manage",
+    "import",
+    "export"
+  ],
+  "category": "Productivity",
+  "mcpServers": "./mcp.json",
+  "skills": "./skills/"
+}

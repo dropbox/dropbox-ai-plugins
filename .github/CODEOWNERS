@@ -2,5 +2,6 @@
 
 */skills/** @dropbox/appsec
 */.mcp.json @dropbox/appsec
+*/mcp.json @dropbox/appsec
 */plugin.json @dropbox/appsec
 /shared/OAUTH_SCOPES.md @dropbox/appsec

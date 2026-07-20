@@ -17,11 +17,26 @@ EXPECTED_MCP_ENDPOINTS = {
         "name": "chatgpt_app_mcp",
         "url": "https://mcp.dropbox.com/chatgpt_app_mcp",
     },
+    "cursor/mcp.json": {
+        "name": "dropbox",
+        "url": "https://mcp.dropbox.com/cursor_app_mcp",
+    },
 }
 
 MANIFEST_PATHS = [
     Path("claude/.claude-plugin/plugin.json"),
     Path("codex/.codex-plugin/plugin.json"),
+    Path("cursor/.cursor-plugin/plugin.json"),
+]
+
+REQUIRED_MCP_HOST_FILES = [
+    Path("claude/README.md"),
+    Path("claude/LICENSE"),
+    Path("codex/README.md"),
+    Path("codex/LICENSE"),
+    Path("cursor/README.md"),
+    Path("cursor/LICENSE"),
+    Path("cursor/MARKETPLACE_SUBMISSION.md"),
 ]
 
 PUBLIC_PACKAGE_PATHS = [
@@ -29,6 +44,7 @@ PUBLIC_PACKAGE_PATHS = [
     Path("LICENSE"),
     Path("claude"),
     Path("codex"),
+    Path("cursor"),
     Path("shared"),
 ]
 
@@ -140,6 +156,14 @@ def test_mcp_host_json_files_are_valid() -> None:
         path = package_root / relative_path
         assert path.is_file(), f"Missing required JSON file: {relative_path}"
         _load_json(path)
+
+
+def test_mcp_host_required_files_exist() -> None:
+    package_root = _package_root()
+    for relative_path in REQUIRED_MCP_HOST_FILES:
+        assert (package_root / relative_path).is_file(), (
+            f"Missing required MCP Host file: {relative_path}"
+        )
 
 
 def test_mcp_host_manifest_path_references_are_valid() -> None:

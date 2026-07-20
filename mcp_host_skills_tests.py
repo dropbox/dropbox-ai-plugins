@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 
+from itertools import combinations
 from pathlib import Path
 
 PLUGIN_ROOT = Path(__file__).resolve().parent
@@ -50,11 +51,42 @@ MCP_HOST_TOOLS = {
         "delete",
         "check_job_status",
     },
+    "cursor": {
+        "search",
+        "list_folder",
+        "get_file_metadata",
+        "who_am_i",
+        "list_file_requests",
+        "get_file_request",
+        "create_file_request",
+        "fetch",
+        "download_link",
+        "file_preview",
+        "create_folder",
+        "create_file",
+        "create_shared_link",
+        "list_shared_links",
+        "get_shared_link_metadata",
+        "move",
+        "copy",
+        "delete",
+        "check_job_status",
+    },
+}
+
+EXPECTED_SKILL_NAMES = {
+    "clean-up-dropbox-content",
+    "collect-files-with-request",
+    "find-dropbox-content",
+    "inspect-dropbox-file",
+    "organize-dropbox-folder",
+    "share-dropbox-content",
 }
 
 MANIFEST_PATHS = {
     "claude": Path("claude/.claude-plugin/plugin.json"),
     "codex": Path("codex/.codex-plugin/plugin.json"),
+    "cursor": Path("cursor/.cursor-plugin/plugin.json"),
 }
 
 
@@ -177,25 +209,34 @@ def test_mcp_host_manifests_include_all_mcp_host_skill_files() -> None:
         assert manifest_skill_names == mcp_host_skill_names
 
 
-def test_same_named_claude_and_codex_skills_are_identical_when_tools_match() -> None:
-    claude_skill_paths = {
-        skill_path.parent.name: skill_path
-        for skill_path in _mcp_host_skill_paths("claude")
-    }
-    codex_skill_paths = {
-        skill_path.parent.name: skill_path
-        for skill_path in _mcp_host_skill_paths("codex")
+def test_mcp_host_manifests_include_expected_skills() -> None:
+    for mcp_host in MCP_HOST_TOOLS:
+        manifest_skill_names = {
+            skill_path.parent.name for skill_path in _manifest_skill_paths(mcp_host)
+        }
+        assert manifest_skill_names == EXPECTED_SKILL_NAMES
+
+
+def test_same_named_mcp_host_skills_are_identical_when_tools_match() -> None:
+    skill_paths_by_mcp_host = {
+        mcp_host: {
+            skill_path.parent.name: skill_path
+            for skill_path in _mcp_host_skill_paths(mcp_host)
+        }
+        for mcp_host in MCP_HOST_TOOLS
     }
 
-    for skill_name in set(claude_skill_paths) & set(codex_skill_paths):
-        if _tools_from_skill(claude_skill_paths[skill_name]) != _tools_from_skill(
-            codex_skill_paths[skill_name]
-        ):
-            continue
-        assert (
-            claude_skill_paths[skill_name].read_text()
-            == codex_skill_paths[skill_name].read_text()
-        )
+    for left_host, right_host in combinations(MCP_HOST_TOOLS, 2):
+        left_skill_paths = skill_paths_by_mcp_host[left_host]
+        right_skill_paths = skill_paths_by_mcp_host[right_host]
+        for skill_name in set(left_skill_paths) & set(right_skill_paths):
+            left_skill_path = left_skill_paths[skill_name]
+            right_skill_path = right_skill_paths[skill_name]
+            if _tools_from_skill(left_skill_path) != _tools_from_skill(
+                right_skill_path
+            ):
+                continue
+            assert left_skill_path.read_text() == right_skill_path.read_text()
 
 
 def _run_tests() -> None:
