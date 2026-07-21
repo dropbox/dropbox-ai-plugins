@@ -114,7 +114,7 @@ def _resolve_relative_path(root: Path, raw_path: str) -> Path:
 
 
 def _iter_manifest_path_references(manifest: dict[str, Any]) -> Iterable[str]:
-    for key in ("skills", "mcpServers", "apps", "hooks"):
+    for key in ("skills", "mcpServers", "apps", "hooks", "logo"):
         value = manifest.get(key)
         if isinstance(value, str):
             yield value
