@@ -36,7 +36,6 @@ REQUIRED_MCP_HOST_FILES = [
     Path("codex/LICENSE"),
     Path("cursor/README.md"),
     Path("cursor/LICENSE"),
-    Path("cursor/MARKETPLACE_SUBMISSION.md"),
 ]
 
 PUBLIC_PACKAGE_PATHS = [
