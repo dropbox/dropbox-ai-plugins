@@ -1,6 +1,6 @@
 # OAuth Scopes
 
-This document records the Dropbox OAuth scopes used by the Dropbox MCP plugin artifacts for Codex and Claude.
+This document records the Dropbox OAuth scopes used by the Dropbox MCP plugin artifacts for Codex, Claude, and Cursor.
 
 ## MCP Host Surfaces
 
@@ -8,21 +8,22 @@ This document records the Dropbox OAuth scopes used by the Dropbox MCP plugin ar
 | --- | --- | --- |
 | Codex | `https://mcp.dropbox.com/chatgpt_app_mcp` | `https://mcp.dropbox.com/.well-known/oauth-protected-resource/chatgpt_app_mcp` |
 | Claude | `https://mcp.dropbox.com/claude_app_mcp` | `https://mcp.dropbox.com/.well-known/oauth-protected-resource/claude_app_mcp` |
+| Cursor | `https://mcp.dropbox.com/cursor_app_mcp` | `https://mcp.dropbox.com/.well-known/oauth-protected-resource/cursor_app_mcp` |
 
 The OAuth authorization server is Dropbox.
 
 ## Scope Summary
 
-| Scope | Capability enabled | Codex | Claude |
-| --- | --- | --- | --- |
-| `account_info.read` | Identify the authenticated account and support file preview resources. | Yes | Yes |
-| `files.metadata.read` | Search, list folders, and read file or folder metadata. | Yes | Yes |
-| `files.content.read` | Fetch file text content and generate download metadata. | Yes | Yes |
-| `files.content.write` | Create files, create folders, move files, copy files, delete files, and check async file-operation jobs. | Yes | Yes |
-| `sharing.read` | List shared links and read shared-link metadata. | Yes | Yes |
-| `sharing.write` | Create shared links. | Yes | Yes |
-| `file_requests.read` | List and inspect file requests. | Yes | Yes |
-| `file_requests.write` | Create file requests. | Yes | Yes |
+| Scope | Capability enabled | Codex | Claude | Cursor |
+| --- | --- | --- | --- | --- |
+| `account_info.read` | Identify the authenticated account and support file preview resources. | Yes | Yes | Yes |
+| `files.metadata.read` | Search, list folders, and read file or folder metadata. | Yes | Yes | Yes |
+| `files.content.read` | Fetch file text content and generate download metadata. | Yes | Yes | Yes |
+| `files.content.write` | Create files, create folders, move files, copy files, delete files, and check async file-operation jobs. | Yes | Yes | Yes |
+| `sharing.read` | List shared links and read shared-link metadata. | Yes | Yes | Yes |
+| `sharing.write` | Create shared links. | Yes | Yes | Yes |
+| `file_requests.read` | List and inspect file requests. | Yes | Yes | Yes |
+| `file_requests.write` | Create file requests. | Yes | Yes | Yes |
 
 ## Codex Tool Scope Mapping
 
@@ -53,6 +54,32 @@ The Codex artifact points at `chatgpt_app_mcp`.
 ## Claude Tool Scope Mapping
 
 The Claude artifact points at `claude_app_mcp`.
+
+| Tool | Required scope | Notes |
+| --- | --- | --- |
+| `search` | `files.metadata.read` | Read-only search over Dropbox file metadata. |
+| `list_folder` | `files.metadata.read` | Read-only folder listing. |
+| `get_file_metadata` | `files.metadata.read` | Read-only metadata lookup. |
+| `get_shared_link_metadata` | `sharing.read` | Read-only shared-link metadata lookup. |
+| `who_am_i` | `account_info.read` | Read-only account identity check. |
+| `list_shared_links` | `sharing.read` | Read-only shared-link listing. |
+| `list_file_requests` | `file_requests.read` | Read-only file-request listing. |
+| `get_file_request` | `file_requests.read` | Read-only file-request lookup. |
+| `create_file_request` | `file_requests.write` | Creates a Dropbox file request. |
+| `fetch` | `files.content.read` | Reads extracted text content from a file. |
+| `download_link` | `files.content.read` | Creates download metadata for file access. |
+| `file_preview` | `account_info.read` | Reads preview metadata and preview-resource context. |
+| `create_folder` | `files.content.write` | Creates a Dropbox folder. |
+| `create_file` | `files.content.write` | Creates a text-oriented Dropbox file. |
+| `create_shared_link` | `sharing.write` | Creates or reuses a shared link. |
+| `move` | `files.content.write` | Moves Dropbox content. |
+| `copy` | `files.content.write` | Copies Dropbox content. |
+| `delete` | `files.content.write` | Deletes Dropbox content. |
+| `check_job_status` | `files.content.write` | Checks async file-operation job status. |
+
+## Cursor Tool Scope Mapping
+
+The Cursor artifact points at `cursor_app_mcp`.
 
 | Tool | Required scope | Notes |
 | --- | --- | --- |
