@@ -6,7 +6,7 @@
     "name": "Dropbox"
   },
   "homepage": "https://www.dropbox.com",
-  "logo": "./assets/DBXlogo.svg",
+  "logo": "./assets/logo-light.png",
   "license": "Apache-2.0",
   "keywords": [
     "dropbox",
