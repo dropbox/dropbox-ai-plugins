@@ -10,7 +10,7 @@ Use this skill to save generated content or upload files to Dropbox.
 
 ## Tools
 
-- `create_file`
+- `upload_file`
 - `create_folder`
 - `list_folder`
 - `search`
@@ -27,7 +27,7 @@ Use this skill to save generated content or upload files to Dropbox.
 7. Determine the target filename. If not specified, suggest a descriptive filename with appropriate extension based on content type.
 8. Check if a file with the same name already exists at the destination using `get_file_metadata`.
 9. If a file exists, ask the user whether to overwrite, create a new version, or use a different filename.
-10. Before calling `create_file`, confirm the exact destination path, filename, and content summary with the user.
+10. Before calling `upload_file`, confirm the exact destination path, filename, and content summary with the user.
 11. After successful upload, report the file path and offer to create a shared link if appropriate.
 
 ## Confirmation Required
@@ -62,7 +62,7 @@ Do not create files or folders without explicit confirmation. Do not assume the 
 
 Prefer specific destination folders over generic locations like the user's root folder. When the user's intent for folder structure is unclear, suggest organizing content into topic or project-specific folders.
 
-The `create_file` tool is designed for text-oriented content. For large binary files, complex file formats, or bulk file operations, confirm the content type and size are appropriate before proceeding.
+The `upload_file` tool supports various file types and content. For large files, complex file formats, or bulk file operations, confirm the content type and size are appropriate before proceeding.
 
 ## Good Triggers
 

@@ -45,6 +45,7 @@ The Codex artifact points at `chatgpt_app_mcp`.
 | `file_preview` | `account_info.read` | Reads preview metadata and preview-resource context. |
 | `create_folder` | `files.content.write` | Creates a Dropbox folder. |
 | `create_file` | `files.content.write` | Creates a text-oriented Dropbox file. |
+| `upload_file` | `files.content.write` | Uploads files or content to Dropbox. |
 | `create_shared_link` | `sharing.write` | Creates or reuses a shared link. |
 | `move` | `files.content.write` | Moves Dropbox content. |
 | `copy` | `files.content.write` | Copies Dropbox content. |
@@ -71,6 +72,7 @@ The Claude artifact points at `claude_app_mcp`.
 | `file_preview` | `account_info.read` | Reads preview metadata and preview-resource context. |
 | `create_folder` | `files.content.write` | Creates a Dropbox folder. |
 | `create_file` | `files.content.write` | Creates a text-oriented Dropbox file. |
+| `upload_file` | `files.content.write` | Uploads files or content to Dropbox. |
 | `create_shared_link` | `sharing.write` | Creates or reuses a shared link. |
 | `move` | `files.content.write` | Moves Dropbox content. |
 | `copy` | `files.content.write` | Copies Dropbox content. |
@@ -97,6 +99,7 @@ The Cursor artifact points at `cursor_app_mcp`.
 | `file_preview` | `account_info.read` | Reads preview metadata and preview-resource context. |
 | `create_folder` | `files.content.write` | Creates a Dropbox folder. |
 | `create_file` | `files.content.write` | Creates a text-oriented Dropbox file. |
+| `upload_file` | `files.content.write` | Uploads files or content to Dropbox. |
 | `create_shared_link` | `sharing.write` | Creates or reuses a shared link. |
 | `move` | `files.content.write` | Moves Dropbox content. |
 | `copy` | `files.content.write` | Copies Dropbox content. |
