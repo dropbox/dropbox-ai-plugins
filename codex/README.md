@@ -1,13 +1,14 @@
 # Dropbox for Codex
 
-Dropbox for Codex connects Codex to your Dropbox account so you can find, inspect, organize, share, and clean up Dropbox content from a Codex session.
+Dropbox for Codex connects Codex to your Dropbox account so you can find, inspect, upload, organize, share, and clean up Dropbox content from a Codex session.
 
-Use it to locate files and folders, summarize supported file content, inspect shared-link state, create or reuse shared links, collect uploads with file requests, organize folders, and delete content only after explicit review.
+Use it to locate files and folders, upload generated content, summarize supported file content, inspect shared-link state, create or reuse shared links, collect uploads with file requests, organize folders, and delete content only after explicit review.
 
 ## What You Can Do
 
 - Search Dropbox for files and folders by name, keyword, type, or location.
 - Browse folders and inspect file or folder metadata.
+- Upload and save generated content or files to Dropbox.
 - Read and summarize supported file content.
 - Inspect Dropbox shared links and create or reuse shared links after confirmation.
 - Create and inspect Dropbox file requests for collecting uploads.
@@ -18,6 +19,7 @@ Use it to locate files and folders, summarize supported file content, inspect sh
 
 - `find-dropbox-content`: search Dropbox and browse folders without changing anything.
 - `inspect-dropbox-file`: inspect metadata, shared-link state, and supported file content.
+- `upload-to-dropbox`: save and upload generated content or files to Dropbox.
 - `share-dropbox-content`: create, reuse, or inspect Dropbox shared links.
 - `collect-files-with-request`: create, inspect, and list Dropbox file requests.
 - `organize-dropbox-folder`: create folders, copy content, and move content into a cleaner structure.
@@ -64,6 +66,8 @@ The Codex artifact does not grant access to named recipients or manage viewer li
 
 - "Find the Q4 planning deck in Dropbox."
 - "Summarize this Dropbox file and tell me when it was last modified."
+- "Upload this file to my Dropbox Projects folder."
+- "Save this content to Dropbox."
 - "Create a shared link for the Launch folder."
 - "Create a Dropbox file request for vendor invoices."
 - "Copy final PDFs into the Final folder."

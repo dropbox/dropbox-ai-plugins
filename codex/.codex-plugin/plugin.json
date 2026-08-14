@@ -1,6 +1,6 @@
 {
   "name": "dropbox",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Access, save and share files with Dropbox",
   "author": {
     "name": "Dropbox"
@@ -50,8 +50,8 @@
     "termsOfServiceURL": "https://www.dropbox.com/terms",
     "defaultPrompt": [
       "Find and summarize my document",
-      "Create a shareable link for this PDF",
-      "Save this chat to Dropbox"
+      "Save this content to Dropbox",
+      "Create a shareable link for this PDF"
     ],
     "brandColor": "#0061FE",
     "composerIcon": "./assets/composer-icon-light.png",
