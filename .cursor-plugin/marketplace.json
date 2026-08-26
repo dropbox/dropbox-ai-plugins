@@ -1,0 +1,11 @@
+{
+  "name": "dropbox-ai-plugins",
+  "owner": { "name": "Dropbox" },
+  "metadata": {
+    "description": "Dropbox AI plugin artifacts for Claude, OpenAI Codex, and Cursor.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    { "name": "dropbox", "source": "./cursor" }
+  ]
+}
