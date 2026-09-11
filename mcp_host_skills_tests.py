@@ -22,6 +22,7 @@ MCP_HOST_TOOLS = {
         "file_preview",
         "create_folder",
         "create_file",
+        "upload_file",
         "create_shared_link",
         "list_shared_links",
         "get_shared_link_metadata",
@@ -43,6 +44,7 @@ MCP_HOST_TOOLS = {
         "file_preview",
         "create_folder",
         "create_file",
+        "upload_file",
         "create_shared_link",
         "list_shared_links",
         "get_shared_link_metadata",
@@ -64,6 +66,7 @@ MCP_HOST_TOOLS = {
         "file_preview",
         "create_folder",
         "create_file",
+        "upload_file",
         "create_shared_link",
         "list_shared_links",
         "get_shared_link_metadata",
@@ -74,13 +77,25 @@ MCP_HOST_TOOLS = {
     },
 }
 
-EXPECTED_SKILL_NAMES = {
+SHARED_SKILL_NAMES = {
     "clean-up-dropbox-content",
     "collect-files-with-request",
     "find-dropbox-content",
     "inspect-dropbox-file",
     "organize-dropbox-folder",
     "share-dropbox-content",
+}
+
+EXPECTED_SKILL_NAMES = {
+    "claude": SHARED_SKILL_NAMES,
+    "codex": SHARED_SKILL_NAMES | {"upload-to-dropbox"},
+    "cursor": SHARED_SKILL_NAMES,
+}
+
+# Skills that may intentionally diverge on Codex when it has extra sibling
+# skills (for example Codex-only upload routing notes).
+CODEX_SPECIFIC_SKILL_CONTENT = {
+    "collect-files-with-request",
 }
 
 MANIFEST_PATHS = {
@@ -214,7 +229,7 @@ def test_mcp_host_manifests_include_expected_skills() -> None:
         manifest_skill_names = {
             skill_path.parent.name for skill_path in _manifest_skill_paths(mcp_host)
         }
-        assert manifest_skill_names == EXPECTED_SKILL_NAMES
+        assert manifest_skill_names == EXPECTED_SKILL_NAMES[mcp_host]
 
 
 def test_same_named_mcp_host_skills_are_identical_when_tools_match() -> None:
@@ -230,6 +245,8 @@ def test_same_named_mcp_host_skills_are_identical_when_tools_match() -> None:
         left_skill_paths = skill_paths_by_mcp_host[left_host]
         right_skill_paths = skill_paths_by_mcp_host[right_host]
         for skill_name in set(left_skill_paths) & set(right_skill_paths):
+            if skill_name in CODEX_SPECIFIC_SKILL_CONTENT:
+                continue
             left_skill_path = left_skill_paths[skill_name]
             right_skill_path = right_skill_paths[skill_name]
             if _tools_from_skill(left_skill_path) != _tools_from_skill(
