@@ -92,9 +92,9 @@ EXPECTED_SKILL_NAMES = {
     "cursor": SHARED_SKILL_NAMES,
 }
 
-# Skills that may intentionally diverge across MCP hosts when one host has
-# extra sibling skills (for example Codex-only upload routing notes).
-HOST_SPECIFIC_SKILL_CONTENT = {
+# Skills that may intentionally diverge on Codex when it has extra sibling
+# skills (for example Codex-only upload routing notes).
+CODEX_SPECIFIC_SKILL_CONTENT = {
     "collect-files-with-request",
 }
 
@@ -245,7 +245,7 @@ def test_same_named_mcp_host_skills_are_identical_when_tools_match() -> None:
         left_skill_paths = skill_paths_by_mcp_host[left_host]
         right_skill_paths = skill_paths_by_mcp_host[right_host]
         for skill_name in set(left_skill_paths) & set(right_skill_paths):
-            if skill_name in HOST_SPECIFIC_SKILL_CONTENT:
+            if skill_name in CODEX_SPECIFIC_SKILL_CONTENT:
                 continue
             left_skill_path = left_skill_paths[skill_name]
             right_skill_path = right_skill_paths[skill_name]
