@@ -11,40 +11,27 @@ Use this skill to save generated content or upload files to Dropbox.
 ## Tools
 
 - `upload_file`
-- `create_folder`
 - `list_folder`
 - `search`
-- `get_file_metadata`
 
 ## Workflow
 
 1. Identify what content needs to be saved or uploaded to Dropbox.
-2. Determine the target destination folder path.
-3. If the destination is ambiguous or not specified, ask the user to confirm the target location.
-4. Use `search` or `list_folder` to verify the destination folder exists and is accessible.
-5. If the destination folder does not exist, ask the user whether to create it before proceeding.
-6. Use `create_folder` only after explicit confirmation when a new folder is needed.
-7. Determine the target filename. If not specified, suggest a descriptive filename with appropriate extension based on content type.
-8. Check if a file with the same name already exists at the destination using `get_file_metadata`.
-9. If a file exists, ask the user whether to overwrite, create a new version, or use a different filename.
-10. Before calling `upload_file`, confirm the exact destination path, filename, and content summary with the user.
-11. After successful upload, report the file path and offer to create a shared link if appropriate.
+2. Determine the destination path. If the user named an exact path, use it. Use `search` or `list_folder` only when the folder is ambiguous.
+3. If the destination folder does not exist, ask the user for an existing folder. `upload_file` does not create missing parent folders.
+4. If the user did not name the file, propose one filename and extension.
+5. Before calling `upload_file`, confirm the exact destination path, filename, and content summary with the user.
+6. After a successful upload, report that the file was created, including the path, filename, and file size when available.
+7. If `upload_file` returns a name conflict, stop and ask the user before trying another name.
+8. If the user wants a shared link, switch to `share-dropbox-content`. Do not create a shared link from this skill.
 
 ## Confirmation Required
 
 Before creating a file, confirm:
 
 - Exact destination folder path
-- Target filename and extension
+- Target filename and extension, including the single proposed name when the user did not provide one
 - Content type and summary of what will be saved
-- Handling of naming conflicts if a file already exists
-- Whether the destination folder should be created if it does not exist
-
-Before creating a destination folder, confirm:
-
-- Exact folder path
-- Whether parent folders already exist
-- That the folder is not a team root or the user's personal root without a child folder
 
 ## Output
 
@@ -52,13 +39,13 @@ After a successful upload, return:
 
 - Full file path in Dropbox
 - Filename and file size when available
-- Confirmation that the file was created or updated
-- Whether any folders were created as part of the operation
-- Offer to create a shared link or perform additional actions
+- Confirmation that the file was created
+
+If `upload_file` returns a name conflict, report the conflict and wait for the user to choose another name.
 
 ## Safety
 
-Do not create files or folders without explicit confirmation. Do not assume the destination folder or filename without verifying with the user. When naming conflicts exist, never silently overwrite without user approval.
+Do not upload without explicit confirmation of the destination path, filename, and content. Do not assume the destination folder or filename without verifying with the user. Do not retry with a different filename after a name conflict until the user chooses one. Do not create a shared link from this skill.
 
 Prefer specific destination folders over generic locations like the user's root folder. When the user's intent for folder structure is unclear, suggest organizing content into topic or project-specific folders.
 
