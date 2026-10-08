@@ -264,13 +264,35 @@ def _run_tests() -> None:
 
 
 def test_antigravity_manifest_uses_supported_fields() -> None:
-    manifest = _load_json(_package_root() / "antigravity/plugin.json")
+    manifest_path = _package_root() / "antigravity/plugin.json"
+    manifest = _load_json(manifest_path)
     assert manifest.get("$schema") == (
         "https://antigravity.google/schemas/v1/plugin.json"
     )
-    assert manifest.get("name") == "dropbox"
-    assert isinstance(manifest.get("description"), str)
-    assert set(manifest) <= {"$schema", "name", "description"}
+    assert manifest.get("name") == manifest_path.parent.name == "antigravity"
+    description = manifest.get("description")
+    assert isinstance(description, str)
+    assert 120 <= len(description) <= 160
+    assert manifest.get("version") == "1.0.0"
+    assert re.fullmatch(
+        r"(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)"
+        r"(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?"
+        r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?",
+        manifest["version"],
+    )
+    assert manifest.get("displayName") == "Dropbox"
+    assert manifest.get("author") == {"name": "Dropbox"}
+    assert manifest.get("license") == "Apache-2.0"
+    assert manifest.get("homepage") == "https://www.dropbox.com"
+    assert manifest.get("category") == "Productivity"
+    keywords = manifest.get("keywords")
+    assert isinstance(keywords, list) and keywords
+    assert all(isinstance(keyword, str) for keyword in keywords)
+    suggested_prompts = manifest.get("suggestedPrompts")
+    assert isinstance(suggested_prompts, list)
+    assert len(suggested_prompts) == 3
+    assert all(isinstance(prompt, str) for prompt in suggested_prompts)
+    assert manifest.get("logo") == "./assets/logo.png"
 
 
 if __name__ == "__main__":
