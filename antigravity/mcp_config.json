@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "dropbox": {
+      "serverUrl": "https://mcp.dropbox.com/gemini_app_mcp"
+    }
+  }
+}
