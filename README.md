@@ -1,11 +1,12 @@
 # Dropbox AI Plugins
 
-This repository contains Dropbox's AI plugin artifacts for Claude, OpenAI Codex, and Cursor.
+This repository contains Dropbox's AI plugin artifacts for Claude, OpenAI Codex, Google Antigravity, and Cursor.
 
 ## Repository Layout
 
 - `claude/` contains the Claude MCP Host artifact for Claude Code and Claude Cowork.
 - `codex/` contains the Codex MCP Host artifact.
+- `antigravity/` contains the Google Antigravity plugin artifact.
 - `cursor/` contains the Cursor Marketplace plugin artifact.
 - `shared/` contains shared reference material, including OAuth scope documentation.
 
@@ -15,6 +16,7 @@ Use the MCP Host-specific directory for setup instructions, capabilities, known 
 
 - Claude: start with `claude/README.md`.
 - Codex: start with `codex/README.md`.
+- Google Antigravity: start with `antigravity/README.md`.
 - Cursor: start with `cursor/README.md`.
 - OAuth scopes: see `shared/OAUTH_SCOPES.md`.
 
