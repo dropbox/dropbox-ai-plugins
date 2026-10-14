@@ -40,6 +40,7 @@
     "./skills/find-dropbox-content",
     "./skills/inspect-dropbox-file",
     "./skills/organize-dropbox-folder",
-    "./skills/share-dropbox-content"
+    "./skills/share-dropbox-content",
+    "./skills/edit-dropbox-paper-document"
   ]
 }

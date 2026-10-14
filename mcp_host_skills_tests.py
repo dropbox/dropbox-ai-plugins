@@ -30,6 +30,10 @@ MCP_HOST_TOOLS = {
         "copy",
         "delete",
         "check_job_status",
+        "list_dropbox_operations",
+        "get_dropbox_operation",
+        "run_read_dropbox_operation",
+        "run_write_dropbox_operation",
     },
     "codex": {
         "search",
@@ -52,6 +56,10 @@ MCP_HOST_TOOLS = {
         "copy",
         "delete",
         "check_job_status",
+        "list_dropbox_operations",
+        "get_dropbox_operation",
+        "run_read_dropbox_operation",
+        "run_write_dropbox_operation",
     },
     "cursor": {
         "search",
@@ -77,6 +85,19 @@ MCP_HOST_TOOLS = {
     },
 }
 
+# Catalog operations referenced by skills are not directly callable MCP tools. Keep them separate
+# so the Tools sections must still list only actual host tools.
+PAPER_OPERATION_NAMES = {
+    "paper_read_document",
+    "paper_apply_markdown",
+}
+
+MCP_HOST_OPERATIONS = {
+    "claude": PAPER_OPERATION_NAMES,
+    "codex": PAPER_OPERATION_NAMES,
+    "cursor": set(),
+}
+
 SHARED_SKILL_NAMES = {
     "clean-up-dropbox-content",
     "collect-files-with-request",
@@ -87,8 +108,8 @@ SHARED_SKILL_NAMES = {
 }
 
 EXPECTED_SKILL_NAMES = {
-    "claude": SHARED_SKILL_NAMES,
-    "codex": SHARED_SKILL_NAMES | {"upload-to-dropbox"},
+    "claude": SHARED_SKILL_NAMES | {"edit-dropbox-paper-document"},
+    "codex": SHARED_SKILL_NAMES | {"upload-to-dropbox", "edit-dropbox-paper-document"},
     "cursor": SHARED_SKILL_NAMES,
 }
 
@@ -205,7 +226,11 @@ def test_all_mcp_host_skill_files_use_supported_mcp_host_tools() -> None:
 def test_mcp_host_skill_tool_references_use_supported_mcp_host_tools() -> None:
     for mcp_host, supported_tools in MCP_HOST_TOOLS.items():
         for skill_path in _mcp_host_skill_paths(mcp_host):
-            unknown_tools = _tool_like_backtick_names(skill_path) - supported_tools
+            unknown_tools = (
+                _tool_like_backtick_names(skill_path)
+                - supported_tools
+                - MCP_HOST_OPERATIONS[mcp_host]
+            )
             assert not unknown_tools, (
                 f"{mcp_host} skill {skill_path.parent.name} references "
                 f"unsupported tool-like names: {sorted(unknown_tools)}"

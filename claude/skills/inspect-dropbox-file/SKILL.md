@@ -16,8 +16,12 @@ Use this skill to understand a Dropbox file or folder before summarizing, compar
 - `get_shared_link_metadata`
 - `search`
 - `list_folder`
+- `list_dropbox_operations`
+- `get_dropbox_operation`
 
 ## Workflow
+
+For Paper document editing, use `edit-dropbox-paper-document`. For Paper content or history, discover the native operations through the Dropbox operations catalog. The file-history limitation below applies to ordinary Dropbox files.
 
 1. Identify the target file or folder from the user request.
 2. If the target is ambiguous, use `search` or `list_folder` to find likely matches.

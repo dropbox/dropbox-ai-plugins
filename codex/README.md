@@ -10,6 +10,7 @@ Use it to locate files and folders, upload generated content, summarize supporte
 - Browse folders and inspect file or folder metadata.
 - Upload and save generated content or files to Dropbox.
 - Read and summarize supported file content.
+- Create native Paper documents, edit their content and tables, comment, and inspect history through the Dropbox operations catalog.
 - Inspect Dropbox shared links and create or reuse shared links after confirmation.
 - Create and inspect Dropbox file requests for collecting uploads.
 - Create folders, copy content, move content, and check asynchronous file-operation jobs.
@@ -24,6 +25,7 @@ Use it to locate files and folders, upload generated content, summarize supporte
 - `collect-files-with-request`: create, inspect, and list Dropbox file requests.
 - `organize-dropbox-folder`: create folders, copy content, and move content into a cleaner structure.
 - `clean-up-dropbox-content`: review and delete Dropbox files or folders with explicit confirmation.
+- `edit-dropbox-paper-document`: edit native Paper documents through the Dropbox operations catalog.
 
 ## Setup
 
@@ -58,12 +60,14 @@ The Codex artifact does not grant access to named recipients or manage viewer li
 ## Known Limitations
 
 - Recipient-based sharing and viewer management are not available until the required Dropbox MCP tools are exposed.
-- Revision history and restore workflows are not available until the required Dropbox MCP tools are exposed.
+- Revision history and restore workflows for ordinary Dropbox files are not available until the required Dropbox MCP tools are exposed. Paper history is available through the operations catalog; this does not provide document restore.
 - File content extraction depends on the supported file types and limits of the Dropbox MCP service.
 - Some file operations may complete asynchronously and require job-status checks before reporting final results.
 
 ## Example Prompts
 
+- "Create a Paper doc from these meeting notes."
+- "Add a next-steps section to this Paper document."
 - "Find the Q4 planning deck in Dropbox."
 - "Summarize this Dropbox file and tell me when it was last modified."
 - "Upload this file to my Dropbox Projects folder."

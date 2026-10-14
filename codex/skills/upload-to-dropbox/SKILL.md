@@ -18,6 +18,8 @@ Use this skill to save generated content or upload files to Dropbox.
 
 ## Workflow
 
+If the user wants a native Dropbox Paper document, use `edit-dropbox-paper-document`. Uploading a .md file or changing its extension to .paper does not create a Paper document.
+
 1. Identify what content needs to be saved or uploaded to Dropbox.
 2. Determine the destination path. If the user named an exact path, use it. Use `search` or `list_folder` only when the folder is ambiguous.
 3. If the destination folder does not exist, confirm the path and create it with `create_folder`. `upload_file` does not create missing parent folders. `create_folder` only creates the last path segment, so create any missing parent first.
