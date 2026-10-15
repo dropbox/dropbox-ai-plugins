@@ -2,7 +2,7 @@
   "name": "dropbox-ai-plugins",
   "owner": { "name": "Dropbox" },
   "metadata": {
-    "description": "Dropbox AI plugin artifacts for Claude, OpenAI Codex, and Cursor.",
+    "description": "Dropbox AI plugin artifacts for Claude, OpenAI Codex, Google Antigravity, and Cursor.",
     "version": "1.0.0"
   },
   "plugins": [

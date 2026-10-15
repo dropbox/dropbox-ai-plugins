@@ -77,6 +77,8 @@ MCP_HOST_TOOLS = {
     },
 }
 
+MCP_HOST_TOOLS["antigravity"] = MCP_HOST_TOOLS["claude"]
+
 SHARED_SKILL_NAMES = {
     "clean-up-dropbox-content",
     "collect-files-with-request",
@@ -90,6 +92,7 @@ EXPECTED_SKILL_NAMES = {
     "claude": SHARED_SKILL_NAMES,
     "codex": SHARED_SKILL_NAMES | {"upload-to-dropbox"},
     "cursor": SHARED_SKILL_NAMES,
+    "antigravity": SHARED_SKILL_NAMES,
 }
 
 # Skills that may intentionally diverge on Codex when it has extra sibling
@@ -102,6 +105,7 @@ MANIFEST_PATHS = {
     "claude": Path("claude/.claude-plugin/plugin.json"),
     "codex": Path("codex/.codex-plugin/plugin.json"),
     "cursor": Path("cursor/.cursor-plugin/plugin.json"),
+    "antigravity": Path("antigravity/plugin.json"),
 }
 
 
@@ -117,6 +121,9 @@ def _manifest_skill_path(mcp_host_root: Path, raw_path: str) -> Path:
 
 
 def _manifest_skill_paths(mcp_host: str) -> list[Path]:
+    if mcp_host == "antigravity":
+        return _mcp_host_skill_paths(mcp_host)
+
     manifest = _read_json(MANIFEST_PATHS[mcp_host])
     skills = manifest.get("skills", [])
     mcp_host_root = PLUGIN_ROOT / mcp_host

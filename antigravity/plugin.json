@@ -1,0 +1,25 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "antigravity",
+  "version": "1.0.0",
+  "displayName": "Dropbox",
+  "description": "Connect Antigravity to Dropbox to search, inspect, summarize, share, collect uploads, organize folders, and clean up files with confirmation for write actions.",
+  "author": {
+    "name": "Dropbox"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://www.dropbox.com",
+  "category": "Productivity",
+  "keywords": [
+    "dropbox",
+    "files",
+    "sharing",
+    "folders"
+  ],
+  "suggestedPrompts": [
+    "Find and summarize the Q4 planning deck in Dropbox",
+    "Create a shared link for the Launch folder",
+    "Review duplicate exports in this folder and ask before deleting anything"
+  ],
+  "logo": "./assets/logo.png"
+}

@@ -21,12 +21,17 @@ EXPECTED_MCP_ENDPOINTS = {
         "name": "dropbox",
         "url": "https://mcp.dropbox.com/cursor_app_mcp",
     },
+    "antigravity/mcp_config.json": {
+        "name": "dropbox",
+        "serverUrl": "https://mcp.dropbox.com/gemini_app_mcp",
+    },
 }
 
 MANIFEST_PATHS = [
     Path("claude/.claude-plugin/plugin.json"),
     Path("codex/.codex-plugin/plugin.json"),
     Path("cursor/.cursor-plugin/plugin.json"),
+    Path("antigravity/plugin.json"),
 ]
 
 REQUIRED_MCP_HOST_FILES = [
@@ -36,6 +41,8 @@ REQUIRED_MCP_HOST_FILES = [
     Path("codex/LICENSE"),
     Path("cursor/README.md"),
     Path("cursor/LICENSE"),
+    Path("antigravity/README.md"),
+    Path("antigravity/LICENSE"),
 ]
 
 PUBLIC_PACKAGE_PATHS = [
@@ -44,6 +51,7 @@ PUBLIC_PACKAGE_PATHS = [
     Path("claude"),
     Path("codex"),
     Path("cursor"),
+    Path("antigravity"),
     Path("shared"),
 ]
 
@@ -193,12 +201,20 @@ def test_mcp_configs_use_only_production_dropbox_endpoints() -> None:
         assert isinstance(server, dict), (
             f"{relative_path} server config must be an object."
         )
-        assert server.get("type") == "http", (
-            f"{relative_path} must use an HTTP MCP server."
-        )
-        assert server.get("url") == expected["url"], (
-            f"{relative_path} must point at the production endpoint."
-        )
+        if "serverUrl" in expected:
+            assert set(server) == {"serverUrl"}, (
+                f"{relative_path} must use Antigravity's remote MCP schema."
+            )
+            assert server.get("serverUrl") == expected["serverUrl"], (
+                f"{relative_path} must point at the production endpoint."
+            )
+        else:
+            assert server.get("type") == "http", (
+                f"{relative_path} must use an HTTP MCP server."
+            )
+            assert server.get("url") == expected["url"], (
+                f"{relative_path} must point at the production endpoint."
+            )
 
 
 def test_public_package_paths_exclude_repo_only_files() -> None:
@@ -245,6 +261,38 @@ def _run_tests() -> None:
     for _, test in tests:
         test()
     print(f"{Path(__file__).name}: {len(tests)} tests passed")
+
+
+def test_antigravity_manifest_uses_supported_fields() -> None:
+    manifest_path = _package_root() / "antigravity/plugin.json"
+    manifest = _load_json(manifest_path)
+    assert manifest.get("$schema") == (
+        "https://antigravity.google/schemas/v1/plugin.json"
+    )
+    assert manifest.get("name") == manifest_path.parent.name == "antigravity"
+    description = manifest.get("description")
+    assert isinstance(description, str)
+    assert 120 <= len(description) <= 160
+    assert manifest.get("version") == "1.0.0"
+    assert re.fullmatch(
+        r"(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)"
+        r"(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?"
+        r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?",
+        manifest["version"],
+    )
+    assert manifest.get("displayName") == "Dropbox"
+    assert manifest.get("author") == {"name": "Dropbox"}
+    assert manifest.get("license") == "Apache-2.0"
+    assert manifest.get("homepage") == "https://www.dropbox.com"
+    assert manifest.get("category") == "Productivity"
+    keywords = manifest.get("keywords")
+    assert isinstance(keywords, list) and keywords
+    assert all(isinstance(keyword, str) for keyword in keywords)
+    suggested_prompts = manifest.get("suggestedPrompts")
+    assert isinstance(suggested_prompts, list)
+    assert len(suggested_prompts) == 3
+    assert all(isinstance(prompt, str) for prompt in suggested_prompts)
+    assert manifest.get("logo") == "./assets/logo.png"
 
 
 if __name__ == "__main__":
