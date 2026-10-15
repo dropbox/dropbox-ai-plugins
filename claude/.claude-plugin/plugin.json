@@ -6,6 +6,7 @@
     "name": "Dropbox"
   },
   "homepage": "https://www.dropbox.com",
+  "icon": "./assets/logo.png",
   "license": "Apache-2.0",
   "keywords": [
     "dropbox",
