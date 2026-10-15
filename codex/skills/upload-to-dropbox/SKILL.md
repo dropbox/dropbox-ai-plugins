@@ -47,7 +47,7 @@ If `upload_file` returns a name conflict, report the conflict and wait for the u
 
 ## Safety
 
-Do not upload without explicit confirmation of the destination path, filename, and content. Do not create a destination folder without confirming the path. Do not assume the destination folder or filename without verifying with the user. Do not retry with a different filename after a name conflict until the user chooses one. Do not create a shared link from this skill. Automatic post-upload previews are temporarily disabled. Do not call `file_preview` as part of this upload workflow.
+Do not upload without explicit confirmation of the destination path, filename, and content. Do not create a destination folder without confirming the path. Do not assume the destination folder or filename without verifying with the user. Do not retry with a different filename after a name conflict until the user chooses one. Do not create a shared link from this skill.
 
 Prefer specific destination folders over generic locations like the user's root folder. When the user's intent for folder structure is unclear, suggest organizing content into topic or project-specific folders.
 
