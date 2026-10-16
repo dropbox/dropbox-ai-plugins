@@ -1,6 +1,6 @@
 {
-  "name": "dropbox",
-  "version": "1.1.0",
+  "name": "app-69b31dc2110c8191b8b47dc98fe5a052",
+  "version": "6.1.0",
   "description": "Access, save and share files with Dropbox",
   "author": {
     "name": "Dropbox"
@@ -37,8 +37,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Dropbox",
-    "shortDescription": "Access Dropbox files, save content, and create sharing links in Codex while respecting your existing permissions.",
-    "longDescription": "The Dropbox plugin for Codex connects your Dropbox files directly to Codex, so you can search, organize, save generated content, and create sharing links without switching tools. It respects your existing Dropbox permissions, and Codex only works with files you already have access to.",
+    "shortDescription": "Find, create, and take action",
+    "longDescription": "The Dropbox plugin brings your files directly into ChatGPT, so you can find and work with Dropbox content in conversation. Save ChatGPT-generated content to Dropbox or create sharing links without switching tools. Your existing Dropbox permissions always apply, and ChatGPT only accesses files available to you.",
     "developerName": "Dropbox",
     "category": "Productivity",
     "capabilities": [
@@ -47,6 +47,7 @@
     ],
     "websiteURL": "https://www.dropbox.com",
     "privacyPolicyURL": "https://www.dropbox.com/privacy",
+    "supportURL": "https://www.dropbox.com/get_help",
     "termsOfServiceURL": "https://www.dropbox.com/terms",
     "defaultPrompt": [
       "Find and summarize my document",
