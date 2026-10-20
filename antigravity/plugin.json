@@ -1,6 +1,6 @@
 {
   "$schema": "https://antigravity.google/schemas/v1/plugin.json",
-  "name": "antigravity",
+  "name": "dropbox",
   "version": "1.0.0",
   "displayName": "Dropbox",
   "description": "Connect Antigravity to Dropbox to search, inspect, summarize, share, collect uploads, organize folders, and clean up files with confirmation for write actions.",
