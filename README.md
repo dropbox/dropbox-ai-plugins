@@ -24,13 +24,6 @@ Use the MCP Host-specific directory for setup instructions, capabilities, known 
 
 The plugin artifacts use Dropbox OAuth. The current OAuth scope inventory and tool-to-scope mapping are documented in `shared/OAUTH_SCOPES.md`.
 
-## Security And Privacy
-
-Published packages and documentation must not contain credentials, private URLs,
-internal implementation details, or unreleased endpoint configuration. Keep
-write behavior clear to users and point provider configurations at reviewed
-production endpoints.
-
 ## License
 
 Unless otherwise noted:
