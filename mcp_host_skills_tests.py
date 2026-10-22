@@ -32,6 +32,28 @@ MCP_HOST_TOOLS = {
         "delete",
         "check_job_status",
     },
+    "codex": {
+        "search",
+        "list_folder",
+        "get_file_metadata",
+        "who_am_i",
+        "list_file_requests",
+        "get_file_request",
+        "create_file_request",
+        "fetch",
+        "download_link",
+        "file_preview",
+        "create_folder",
+        "create_file",
+        "upload_file",
+        "create_shared_link",
+        "list_shared_links",
+        "get_shared_link_metadata",
+        "move",
+        "copy",
+        "delete",
+        "check_job_status",
+    },
     "cursor": {
         "search",
         "list_folder",
@@ -69,12 +91,20 @@ SHARED_SKILL_NAMES = {
 
 EXPECTED_SKILL_NAMES = {
     "claude": SHARED_SKILL_NAMES,
+    "codex": SHARED_SKILL_NAMES | {"upload-to-dropbox"},
     "cursor": SHARED_SKILL_NAMES,
     "antigravity": SHARED_SKILL_NAMES,
 }
 
+# Skills that may intentionally diverge on Codex when it has extra sibling
+# skills (for example Codex-only upload routing notes).
+CODEX_SPECIFIC_SKILL_CONTENT = {
+    "collect-files-with-request",
+}
+
 MANIFEST_PATHS = {
     "claude": Path("claude/.claude-plugin/plugin.json"),
+    "codex": Path("codex/.codex-plugin/plugin.json"),
     "cursor": Path("cursor/.cursor-plugin/plugin.json"),
     "antigravity": Path("antigravity/plugin.json"),
 }
@@ -223,6 +253,8 @@ def test_same_named_mcp_host_skills_are_identical_when_tools_match() -> None:
         left_skill_paths = skill_paths_by_mcp_host[left_host]
         right_skill_paths = skill_paths_by_mcp_host[right_host]
         for skill_name in set(left_skill_paths) & set(right_skill_paths):
+            if skill_name in CODEX_SPECIFIC_SKILL_CONTENT:
+                continue
             left_skill_path = left_skill_paths[skill_name]
             right_skill_path = right_skill_paths[skill_name]
             if _tools_from_skill(left_skill_path) != _tools_from_skill(
