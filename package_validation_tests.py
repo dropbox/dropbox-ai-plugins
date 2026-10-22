@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-import json
 import re
 
 from pathlib import Path
 from typing import Any, Iterable
+
+import json
 
 REPO_ROOT = Path(__file__).resolve().parent
 
@@ -41,6 +42,9 @@ REQUIRED_MCP_HOST_FILES = [
 PUBLIC_PACKAGE_PATHS = [
     Path("README.md"),
     Path("LICENSE"),
+    Path(".cursor-plugin"),
+    Path(".github/CODEOWNERS"),
+    Path(".github/workflows/public-package-validation.yml"),
     Path("claude"),
     Path("cursor"),
     Path("antigravity"),
@@ -49,9 +53,13 @@ PUBLIC_PACKAGE_PATHS = [
 
 REPO_ONLY_FILE_PATTERNS = [
     re.compile(r"(^|/)BUILD(?:\.in)?$"),
+    re.compile(r"(^|/)CONTRIBUTING\.md$"),
     re.compile(r"(^|/)mcp_host_skills_tests\.py$"),
     re.compile(r"(^|/)package_validation_tests\.py$"),
-    re.compile(r"^temp/"),
+    re.compile(r"^(?:copilot|temp)/"),
+    re.compile(r"(^|/)OWNERS\.yaml$"),
+    re.compile(r"(^|/)RELEASING\.md$"),
+    re.compile(r"(^|/)\.git(?:/|$)"),
     re.compile(r"(^|/)__pycache__/"),
     re.compile(r"(^|/)\.DS_Store$"),
 ]
@@ -100,9 +108,7 @@ def _mcp_host_root_for_manifest(package_root: Path, manifest_path: Path) -> Path
 
 
 def _resolve_relative_path(root: Path, raw_path: str) -> Path:
-    assert raw_path.startswith("./"), (
-        f"Manifest path must be ./-relative: {raw_path!r}"
-    )
+    assert raw_path.startswith("./"), f"Manifest path must be ./-relative: {raw_path!r}"
     resolved = (root / raw_path.removeprefix("./")).resolve()
     root_resolved = root.resolve()
     assert root_resolved == resolved or root_resolved in resolved.parents, (
@@ -136,6 +142,7 @@ def _iter_manifest_path_references(manifest: dict[str, Any]) -> Iterable[str]:
 def _iter_public_package_files(package_root: Path) -> Iterable[Path]:
     for relative_package_path in PUBLIC_PACKAGE_PATHS:
         package_path = package_root / relative_package_path
+        assert package_path.exists(), f"Missing public path: {relative_package_path}"
         if package_path.is_file():
             yield package_path
             continue
@@ -183,9 +190,7 @@ def test_mcp_configs_use_only_production_dropbox_endpoints() -> None:
     for relative_path, expected in EXPECTED_MCP_ENDPOINTS.items():
         config = _load_json(package_root / relative_path)
         mcp_servers = config.get("mcpServers")
-        assert isinstance(mcp_servers, dict), (
-            f"{relative_path} must define mcpServers."
-        )
+        assert isinstance(mcp_servers, dict), f"{relative_path} must define mcpServers."
         assert set(mcp_servers) == {expected["name"]}, (
             f"{relative_path} must define only {expected['name']}."
         )
@@ -215,10 +220,7 @@ def test_public_package_paths_exclude_repo_only_files() -> None:
     repo_only_files = []
     for path in _iter_public_package_files(package_root):
         relative_path = path.relative_to(package_root).as_posix()
-        if any(
-            pattern.search(relative_path)
-            for pattern in REPO_ONLY_FILE_PATTERNS
-        ):
+        if any(pattern.search(relative_path) for pattern in REPO_ONLY_FILE_PATTERNS):
             repo_only_files.append(relative_path)
 
     assert not repo_only_files, (
@@ -231,7 +233,7 @@ def test_public_package_files_do_not_contain_private_or_secret_material() -> Non
     package_root = _package_root()
     failures: list[str] = []
     for path in _iter_public_package_files(package_root):
-        if path.suffix not in {".json", ".md", ".yaml", ".yml"}:
+        if path.suffix == ".png":
             continue
         contents = path.read_text(encoding="utf-8")
         relative_path = path.relative_to(package_root).as_posix()
@@ -243,6 +245,14 @@ def test_public_package_files_do_not_contain_private_or_secret_material() -> Non
         "Public plugin package files must not contain private URLs, local paths, "
         "or secret-looking values:\n" + "\n".join(failures)
     )
+
+
+def test_cursor_marketplace_references_the_local_cursor_package() -> None:
+    package_root = _package_root()
+    marketplace = _load_json(package_root / ".cursor-plugin/marketplace.json")
+    assert marketplace["name"] == "dropbox-ai-plugins"
+    assert marketplace["plugins"] == [{"name": "dropbox", "source": "./cursor"}]
+    assert (package_root / "cursor/.cursor-plugin/plugin.json").is_file()
 
 
 def _run_tests() -> None:
@@ -262,7 +272,7 @@ def test_antigravity_manifest_uses_supported_fields() -> None:
     assert manifest.get("$schema") == (
         "https://antigravity.google/schemas/v1/plugin.json"
     )
-    assert manifest.get("name") == manifest_path.parent.name == "antigravity"
+    assert manifest.get("name") == "dropbox"
     description = manifest.get("description")
     assert isinstance(description, str)
     assert 120 <= len(description) <= 160

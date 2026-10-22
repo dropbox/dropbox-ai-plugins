@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-import json
 import re
 
 from itertools import combinations
 from pathlib import Path
+
+import json
 
 PLUGIN_ROOT = Path(__file__).resolve().parent
 
