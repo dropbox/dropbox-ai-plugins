@@ -14,10 +14,6 @@ EXPECTED_MCP_ENDPOINTS = {
         "name": "claude_app_mcp",
         "url": "https://mcp.dropbox.com/claude_app_mcp",
     },
-    "codex/.mcp.json": {
-        "name": "chatgpt_app_mcp",
-        "url": "https://mcp.dropbox.com/chatgpt_app_mcp",
-    },
     "cursor/mcp.json": {
         "name": "dropbox",
         "url": "https://mcp.dropbox.com/cursor_app_mcp",
@@ -30,7 +26,6 @@ EXPECTED_MCP_ENDPOINTS = {
 
 MANIFEST_PATHS = [
     Path("claude/.claude-plugin/plugin.json"),
-    Path("codex/.codex-plugin/plugin.json"),
     Path("cursor/.cursor-plugin/plugin.json"),
     Path("antigravity/plugin.json"),
 ]
@@ -38,8 +33,6 @@ MANIFEST_PATHS = [
 REQUIRED_MCP_HOST_FILES = [
     Path("claude/README.md"),
     Path("claude/LICENSE"),
-    Path("codex/README.md"),
-    Path("codex/LICENSE"),
     Path("cursor/README.md"),
     Path("cursor/LICENSE"),
     Path("antigravity/README.md"),
@@ -53,7 +46,6 @@ PUBLIC_PACKAGE_PATHS = [
     Path(".github/CODEOWNERS"),
     Path(".github/workflows/public-package-validation.yml"),
     Path("claude"),
-    Path("codex"),
     Path("cursor"),
     Path("antigravity"),
     Path("shared"),
@@ -112,8 +104,6 @@ def _load_json(path: Path) -> dict[str, Any]:
 
 
 def _mcp_host_root_for_manifest(package_root: Path, manifest_path: Path) -> Path:
-    if manifest_path.parts[:2] == ("codex", ".codex-plugin"):
-        return package_root / "codex"
     return package_root / manifest_path.parts[0]
 
 
@@ -174,6 +164,9 @@ def test_mcp_host_json_files_are_valid() -> None:
 
 def test_mcp_host_required_files_exist() -> None:
     package_root = _package_root()
+    assert not (package_root / "codex").exists(), (
+        "The Codex plugin is maintained outside the public package."
+    )
     for relative_path in REQUIRED_MCP_HOST_FILES:
         assert (package_root / relative_path).is_file(), (
             f"Missing required MCP Host file: {relative_path}"
