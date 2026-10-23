@@ -1,11 +1,12 @@
 {
   "name": "dropbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The Dropbox plugin for Claude connects your Dropbox files directly to Claude, so you can search, organize, save generated content, and create sharing links without switching tools. It respects your existing Dropbox permissions, and Claude only works with files you already have access to.",
   "author": {
     "name": "Dropbox"
   },
   "homepage": "https://www.dropbox.com",
+  "privacyPolicyUrl": "https://www.dropbox.com/privacy",
   "icon": "./assets/logo.png",
   "license": "Apache-2.0",
   "keywords": [
