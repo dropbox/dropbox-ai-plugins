@@ -27,7 +27,7 @@ When ambiguous, confirm in one short line: `Did you mean X or Y?`
 ## Tools
 
 - Delivery: Cursor chat (primary), optional Slack via subscriptions, Gmail draft only if Tam wants email briefs
-- **Adapter** `remember` (when authenticated) — store durable voice-slip facts with `kind: fact`, tags `repo:mission-control`
+- Durable prefs/voice slips: `AGENTS.md` via continual-learning, plus Notion or `/06_AI_Notes/voice_slips.md` (Adapter declined)
 - Never store passwords or SSN in the slip book
 
 ## Apply everywhere

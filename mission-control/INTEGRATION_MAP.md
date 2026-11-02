@@ -15,7 +15,7 @@ Maps the 10 office fixes to tools, MCP servers, and skills already available to 
 | 6 | Unknown activity → alert + pause | cursor-cloud `list-cloud-agents`, `get-events`, subscriptions list | `unknown-activity-gate` | Skill ready |
 | 7 | Weekly security sweep | Gmail search, Drive/Dropbox sharing, Notion | `weekly-security-sweep`, `personal-credential-quarantine` | Skill ready |
 | 8 | Batch backlog clear | Notion Team Task Board + Decision Board | `batch-backlog-clear`, `decision-board` | Skill ready |
-| 9 | Voice-friendly replies | Chat style + optional Adapter remember | `voice-friendly-reply` | Skill ready |
+| 9 | Voice-friendly replies | Chat style + `AGENTS.md` / Notion voice slips | `voice-friendly-reply` | Skill ready |
 | 10 | Friday scorecard | Notion board + list-cloud-agents | `friday-scorecard`, `dual-brief` | Skill ready |
 
 ## MCP / tool inventory (usable now)
@@ -61,7 +61,7 @@ Skill: `org-performance-connectors`.
 2. **True auto-pause of other Cursor agents** — we can alert + stop *this* agent's further autonomous passes; killing/pausing another agent requires Tam confirmation (gate skill).
 3. **Credit bureau freezes / password changes** — we surface mail + a change list; Tam (or Money/File Vault with SEND) must perform account actions.
 4. **Dropbox binary upload** — MCP cannot upload local PDF binaries; filing is move/copy inside Dropbox + index sync.
-5. **Adapter memory** — auth required before storing voice slips there.
+5. **Adapter memory** — declined; store voice slips in `AGENTS.md` (continual-learning) and Notion / `/06_AI_Notes/voice_slips.md`.
 
 ## Enable order (recommended)
 

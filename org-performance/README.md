@@ -25,14 +25,14 @@ These beat random lifestyle plugins: they raise **organization performance**, no
 | cursor-subscriptions `subscribe_timer` | Dual briefs, alarm backup, Friday scorecard |
 | cursor-cloud `list-cloud-agents` | Unknown-activity gate |
 
-## Next connectors (need your OAuth — not installable as files alone)
+## Connector status
 
-| Connector | Why | Status in this env |
+| Connector | Why | Status |
 | --- | --- | --- |
-| **Adapter** memory | Durable facts across chats | needsAuth |
-| **Google Sheets** | Live deadline + scorecard tables | needsAuth |
-| **Slack MCP** | Push briefs/alerts to phone channel | not connected |
-| **AgentMail** | SMS-style alarm bridge | optional |
+| **Slack MCP** | Push briefs/alerts to phone channel | Connected (ask Tam which channel) |
+| **Adapter** memory | Durable facts across chats | Declined — use `AGENTS.md` + Notion |
+| **Google Sheets** | Live deadline + scorecard tables | Declined — use Notion + Calendar |
+| **AgentMail** | SMS-style alarm bridge | Optional only if Tam designates an inbox |
 
 ## Orchestrate note
 
