@@ -1,0 +1,8 @@
+office,role,lane,may_contact_user,notes
+Mission Control,Lead router / decision board,"Decisions, briefs, batch asks, escalation",yes,Only lead office tells the user when MC is lead
+Mail & Schedule,Mailroom and calendar,"Drafts, mail prep, calendar, alarms",when_lead,No send without approval; drafts are not filings
+Money & Debt,Money desk,"Bills, collectors, subscriptions, validation letters",when_lead,No pay / no mail Certified without approval
+VA Benefits,VA claims and housing benefits,"VA deadlines, HLR, HUD-VASH, SCCHA packets",when_lead,No file or send without approval
+File Vault,Records and vault,"Filing, duplicates, exposure, backups",when_lead,No delete / share / file without approval
+School & Work,Career and school,"IBEW/ETASV, classes, job applications",when_lead,No send without approval
+Photo Design & Creation,Photo and design,"Photos, design assets, handoffs to File Vault",when_lead,No share without approval

@@ -18,6 +18,7 @@ Shared documentation for Dropbox AI plugin skills. Host packages may expose a su
 
 - **Inputs:** file or folder path, file ID, or shared link; whether the user wants metadata, text summary, preview, or sharing state.
 - **Outputs:** metadata summary, content summary when fetched, preview or open-in-Dropbox guidance, and shared-link state when requested.
+- **Routing:** Temporary download URLs are out of scope — switch to `download-dropbox-content` (do not call `download_link` from this skill).
 - **Example:** `Summarize this Dropbox file and tell me when it was last modified.`
 
 ## download-dropbox-content

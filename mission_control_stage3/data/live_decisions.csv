@@ -1,0 +1,7 @@
+id,title,status,urgency,lead_office,support_office,needs_approval,missing_fields,loop_count,due_date,notes,created_at,updated_at
+D001,ETASV refresh and grab,Active,medium,School & Work,Mail & Schedule,no,,0,2026-11-01,Refresh ETASV status; draft only until approved.,2026-10-30T00:00:00+00:00,2026-10-30T00:00:00+00:00
+D003,Calendar reminder cleanup,Needs Approval,medium,Mail & Schedule,Mission Control,yes,,0,2026-10-31,Clean outdated reminders; calendar + alarms are the reminder system.,2026-10-30T00:00:00+00:00,2026-10-30T00:00:00+00:00
+D004,Bill and subscription sweep,Waiting,high,Money & Debt,Mail & Schedule,yes,,1,2026-11-01,Sweep bills/subscriptions. No pay without approval.,2026-10-29T00:00:00+00:00,2026-10-29T00:00:00+00:00
+D005,Duplicate cleanup,Needs Approval,medium,File Vault,Photo Design & Creation,yes,,0,2026-11-02,Flag duplicates. No delete/file without approval.,2026-10-30T00:00:00+00:00,2026-10-30T00:00:00+00:00
+D006,Newsletter draft,Active,low,Photo Design & Creation,Mail & Schedule,yes,,0,2026-11-03,Draft only — no send without approval.,2026-10-30T00:00:00+00:00,2026-10-30T00:00:00+00:00
+D007,Daily brief,Active,medium,Mission Control,Mail & Schedule,no,,0,2026-10-31,Top-3 brief. Chat is coordination only.,2026-10-31T00:00:00+00:00,2026-10-31T00:00:00+00:00

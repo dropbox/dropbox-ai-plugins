@@ -1,0 +1,9 @@
+id,title,status,lead_office,support_office,needs_approval,loop_count,due_date,notes
+D001,ETASV refresh and grab,Active,School & Work,Mail & Schedule,no,0,2026-11-01,Refresh ETASV status; grab next steps. Draft only until approved.
+D002,Old HLR review,Stale,VA Benefits,File Vault,no,2,2026-10-15,Old Higher-Level Review item — review and archive or resolve.
+D003,Calendar reminder cleanup,Needs Approval,Mail & Schedule,Mission Control,yes,0,2026-10-31,Clean outdated reminders; calendar + alarms are the reminder system.
+D004,Bill and subscription sweep,Waiting,Money & Debt,Mail & Schedule,yes,1,2026-11-01,Sweep bills/subscriptions. No pay without approval.
+D005,Duplicate cleanup,Needs Approval,File Vault,Photo Design & Creation,yes,0,2026-11-02,Flag duplicates for archive. No delete/file without approval.
+D006,Newsletter draft,Active,Photo Design & Creation,Mail & Schedule,yes,0,2026-11-03,Draft only — drafts are not filings; no send without approval.
+D007,Daily brief,Active,Mission Control,Mail & Schedule,no,0,2026-10-31,Top-3 brief. Chat is coordination only — log outcomes in decisions.csv.
+D008,Old ETASV reminder,Stale,School & Work,Mail & Schedule,no,3,2026-10-20,Looped 3 times — escalate; review and archive or resolve.

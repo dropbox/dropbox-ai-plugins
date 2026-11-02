@@ -1,0 +1,40 @@
+timestamp,actor,action,decision_id,detail
+2026-10-31T07:34:31+00:00,app,seed_data,,force=True at 2026-10-31T07:34:31+00:00
+2026-10-31T07:34:31+00:00,routing_service,rebuild_queues,,live=6 stale=2 total=8
+2026-10-31T07:34:31+00:00,routing_service,create_reminders,,count=12
+2026-10-31T07:34:31+00:00,routing_service,loop_alerts,,count=1
+2026-10-31T07:34:31+00:00,mission_control_agent,refresh,,"{'live': 6, 'stale': 2, 'total': 8, 'reminders': 12, 'loop_alerts': 1}"
+2026-10-31T07:34:31+00:00,brief_service,generate_daily_brief,,live=6 stale=2
+2026-10-31T07:45:47+00:00,app,seed_data,,force=False at 2026-10-31T07:45:47+00:00
+2026-10-31T07:45:47+00:00,routing_service,rebuild_queues,,live=6 stale=2 total=8
+2026-10-31T07:45:47+00:00,routing_service,create_reminders,,count=12
+2026-10-31T07:45:47+00:00,routing_service,loop_alerts,,count=1
+2026-10-31T07:45:47+00:00,mission_control_agent,refresh,,"{'live': 6, 'stale': 2, 'total': 8, 'reminders': 12, 'loop_alerts': 1}"
+2026-10-31T07:45:47+00:00,brief_service,generate_daily_brief,,live=6 stale=2
+2026-10-31T08:19:49+00:00,classification_service,classify,,office=File Vault urgency=medium needs_approval=False
+2026-10-31T08:19:49+00:00,classification_service,classify,,office=Money & Debt urgency=high needs_approval=True
+2026-10-31T08:19:49+00:00,classification_service,classify,,office=Photo Design & Creation urgency=low needs_approval=True
+2026-10-31T08:19:49+00:00,app,seed_data,,force=False at 2026-10-31T08:19:49+00:00
+2026-10-31T08:19:49+00:00,routing_service,rebuild_queues,,live=6 stale=2 total=8
+2026-10-31T08:19:49+00:00,routing_service,create_reminders,,count=12
+2026-10-31T08:19:49+00:00,routing_service,loop_alerts,,count=1
+2026-10-31T08:19:49+00:00,mission_control_agent,refresh,,"{'live': 6, 'stale': 2, 'total': 8, 'reminders': 12, 'loop_alerts': 1}"
+2026-10-31T08:19:49+00:00,brief_service,generate_daily_brief,,live=6 stale=2
+2026-10-31T08:19:49+00:00,app,seed_data,,force=True at 2026-10-31T08:19:49+00:00
+2026-10-31T08:19:49+00:00,routing_service,rebuild_queues,,live=6 stale=2 total=8
+2026-10-31T08:19:49+00:00,routing_service,create_reminders,,count=12
+2026-10-31T08:19:49+00:00,routing_service,loop_alerts,,count=1
+2026-10-31T08:19:49+00:00,mission_control_agent,refresh,,"{'live': 6, 'stale': 2, 'total': 8, 'reminders': 12, 'loop_alerts': 1}"
+2026-10-31T08:19:49+00:00,brief_service,generate_daily_brief,,live=6 stale=2
+2026-10-31T08:19:49+00:00,app,seed_data,,force=False at 2026-10-31T08:19:49+00:00
+2026-10-31T08:19:49+00:00,routing_service,rebuild_queues,,live=6 stale=2 total=8
+2026-10-31T08:19:49+00:00,routing_service,create_reminders,,count=12
+2026-10-31T08:19:49+00:00,routing_service,loop_alerts,,count=1
+2026-10-31T08:19:49+00:00,mission_control_agent,refresh,,"{'live': 6, 'stale': 2, 'total': 8, 'reminders': 12, 'loop_alerts': 1}"
+2026-10-31T08:19:49+00:00,office_agent,lane_items,,School & Work count=1
+2026-10-31T08:19:58+00:00,app,seed_data,,force=True at 2026-10-31T08:19:58+00:00
+2026-10-31T08:19:58+00:00,routing_service,rebuild_queues,,live=6 stale=2 total=8
+2026-10-31T08:19:58+00:00,routing_service,create_reminders,,count=12
+2026-10-31T08:19:58+00:00,routing_service,loop_alerts,,count=1
+2026-10-31T08:19:58+00:00,mission_control_agent,refresh,,"{'live': 6, 'stale': 2, 'total': 8, 'reminders': 12, 'loop_alerts': 1}"
+2026-10-31T08:19:58+00:00,brief_service,generate_daily_brief,,live=6 stale=2

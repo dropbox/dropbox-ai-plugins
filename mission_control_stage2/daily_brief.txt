@@ -1,0 +1,25 @@
+Mission Control — Daily Brief (Stage 2)
+Generated: 2026-10-31T07:30:08
+
+Source of truth: decisions.csv + live_decisions.csv
+Chat is coordination only.
+No send / pay / delete / share / file without approval.
+
+Live decisions (6) — Active / Waiting / Needs Approval
+Approval gate: 2 Needs Approval (max 7/day)
+- [D001] ETASV refresh and grab | Active | lead=School & Work support=Mail & Schedule
+- [D003] Calendar reminder cleanup | Needs Approval | lead=Mail & Schedule support=Mission Control
+- [D004] Bill and subscription sweep | Waiting | lead=Money & Debt support=Mail & Schedule
+- [D005] Duplicate cleanup | Needs Approval | lead=File Vault support=Photo Design & Creation
+- [D006] Newsletter draft | Active | lead=Photo Design & Creation support=Mail & Schedule
+- [D007] Daily brief | Active | lead=Mission Control support=Mail & Schedule
+
+Stale review (2) — archive or reactivate
+- [D002] Old HLR review | loops=2 | lead=VA Benefits
+- [D008] Old ETASV reminder | loops=3 | lead=School & Work
+
+Loop alerts (1) — escalate at 3+
+- [D008] School & Work: loop_count 3 >= 3; escalate
+
+Reminders: see reminder_log.csv (calendar + alarms).
+Only the lead office tells the user.

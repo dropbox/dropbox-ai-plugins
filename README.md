@@ -8,6 +8,10 @@ This repository contains Dropbox's AI plugin artifacts for Claude, OpenAI Codex,
 - `codex/` contains the Codex MCP Host artifact.
 - `antigravity/` contains the Google Antigravity plugin artifact.
 - `cursor/` contains the Cursor Marketplace plugin artifact.
+- `food/` contains the local Food Mission Cursor plugin (restaurant list generator, best restaurant finder, Dropbox save). It is not part of the public Dropbox marketplace package.
+- `mission_control_stage1/` contains the Stage 1 Mission Control CSV/plain-text ops kit (decisions, offices, rules, live/stale views). Run `python3 install_stage1.py` to regenerate.
+- `mission_control_stage2/` contains the Stage 2 auto ops pack (queue rebuild, brief, reminders, loop alerts, office bot prompts). Run `python3 mission_control_stage2/auto_stage2.py`.
+- `mission_control_stage3/` contains the Stage 3 Mission Control safe routing/decision layer (intake, classify, route, approve, brief, audit). Run `python3 mission_control_stage3/app.py init`.
 - `shared/` contains shared reference material, including OAuth scope documentation and the skill reference.
 - `.cursor/rules/` contains Bot and MCP plugin development rules for contributors and agents.
 
