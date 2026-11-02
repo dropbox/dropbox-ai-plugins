@@ -1,0 +1,25 @@
+{
+  "name": "mission-control",
+  "description": "Mission Control chief-of-staff plugin: dual briefs, decision board, deadline alarms, auto-file vault, security sweep, 10 ops fixes, and VA/Dropbox workflow skills. Not food.",
+  "version": "1.1.2",
+  "author": {
+    "name": "Mission Control"
+  },
+  "logo": "./assets/logo-light.png",
+  "license": "Apache-2.0",
+  "keywords": [
+    "mission-control",
+    "chief-of-staff",
+    "va",
+    "offices",
+    "traffic",
+    "briefing",
+    "workflow",
+    "decision-board",
+    "deadlines",
+    "security"
+  ],
+  "category": "Productivity",
+  "skills": "./skills/",
+  "rules": "./rules/"
+}

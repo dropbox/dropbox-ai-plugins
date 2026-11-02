@@ -1,0 +1,13 @@
+decision_id,office,reminder_type,scheduled_for,status,created_at
+D001,School & Work,due_date,2026-11-01T09:00:00,scheduled,2026-10-31T07:30:08
+D001,Mail & Schedule,alarm,2026-10-31T18:00:00,scheduled,2026-10-31T07:30:08
+D003,Mail & Schedule,due_date,2026-10-31T09:00:00,scheduled,2026-10-31T07:30:08
+D003,Mail & Schedule,alarm,2026-10-30T18:00:00,scheduled,2026-10-31T07:30:08
+D004,Money & Debt,due_date,2026-11-01T09:00:00,scheduled,2026-10-31T07:30:08
+D004,Mail & Schedule,alarm,2026-10-31T18:00:00,scheduled,2026-10-31T07:30:08
+D005,File Vault,due_date,2026-11-02T09:00:00,scheduled,2026-10-31T07:30:08
+D005,Mail & Schedule,alarm,2026-11-01T18:00:00,scheduled,2026-10-31T07:30:08
+D006,Photo Design & Creation,due_date,2026-11-03T09:00:00,scheduled,2026-10-31T07:30:08
+D006,Mail & Schedule,alarm,2026-11-02T18:00:00,scheduled,2026-10-31T07:30:08
+D007,Mission Control,due_date,2026-10-31T09:00:00,scheduled,2026-10-31T07:30:08
+D007,Mail & Schedule,alarm,2026-10-30T18:00:00,scheduled,2026-10-31T07:30:08

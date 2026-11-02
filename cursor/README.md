@@ -6,6 +6,7 @@ Use it to locate files and folders, save generated text content, summarize suppo
 
 ## What You Can Do
 
+- Check which Dropbox account or team is connected.
 - Search Dropbox for files and folders by name, keyword, type, or location.
 - Browse folders and inspect file or folder metadata.
 - Save generated text content into Dropbox as new files.
@@ -20,13 +21,14 @@ Use it to locate files and folders, save generated text content, summarize suppo
 
 ## Included Skills
 
+- `check-dropbox-account`: identify the connected Dropbox account, team, and namespace roots.
 - `find-dropbox-content`: search Dropbox and browse folders without changing anything.
 - `inspect-dropbox-file`: inspect metadata, shared-link state, previews, and supported file content.
 - `download-dropbox-content`: generate temporary single-use download URLs for files.
 - `upload-to-dropbox`: save generated text content or create new text files in Dropbox.
 - `share-dropbox-content`: create, reuse, or inspect Dropbox shared links and invite viewers by email.
 - `collect-files-with-request`: create, inspect, and list Dropbox file requests.
-- `organize-dropbox-folder`: create folders, copy content, and move content into a cleaner structure.
+- `organize-dropbox-folder`: create folders, copy, move, or rename content into a cleaner structure.
 - `clean-up-dropbox-content`: review and delete Dropbox files or folders with explicit confirmation.
 
 
@@ -38,7 +40,7 @@ For inputs, outputs, and usage examples for every skill, see [`shared/SKILL_REFE
 
 1. Install the Dropbox plugin from the Cursor Marketplace. For local testing, copy the `cursor/` directory to `~/.cursor/plugins/local/dropbox/`.
 2. Reload Cursor with **Developer: Reload Window**.
-3. Confirm Dropbox appears under **Settings > Plugins > Installed** and that the `dropbox` MCP server and all eight skills are available.
+3. Confirm Dropbox appears under **Settings > Plugins > Installed** and that the `dropbox` MCP server and all nine skills are available.
 4. When Cursor asks for Dropbox access, complete Dropbox OAuth authentication and review the requested permissions before granting access.
 
 The plugin manifest lives at `.cursor-plugin/plugin.json`, and the production Dropbox MCP endpoint is configured in `mcp.json`.
@@ -75,6 +77,7 @@ Public, anyone-with-the-link, team-wide, and editor links are not created by the
 
 ## Example Prompts
 
+- "Which Dropbox account am I connected to?"
 - "Find the Q4 planning deck in Dropbox."
 - "Summarize this Dropbox file and tell me when it was last modified."
 - "Give me a temporary download link for this Dropbox file."

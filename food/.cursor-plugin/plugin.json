@@ -1,0 +1,23 @@
+{
+  "name": "food-mission",
+  "description": "Unified food mission plugin: generate Top 10 restaurant lists, find the best restaurants for any criteria, and save curated food lists to Dropbox.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Food Mission"
+  },
+  "homepage": "https://github.com/ngotaminbox007-glitch/dropbox-ai-plugins",
+  "logo": "./assets/logo-light.png",
+  "license": "Apache-2.0",
+  "keywords": [
+    "food",
+    "restaurants",
+    "dining",
+    "cuisine",
+    "recommendations",
+    "travel",
+    "dropbox",
+    "lists"
+  ],
+  "category": "Lifestyle",
+  "skills": "./skills/"
+}

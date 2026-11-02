@@ -1,0 +1,8 @@
+office,role,lane,may_contact_user,notes
+Mission Control,Lead router / decision board,"Intake, classification, routing, briefs, approval gate, escalation",when_lead,"forbidden without approval: send, pay, delete, share, file, government_filing"
+Mail & Schedule,Mailroom and calendar,"Email drafts, calendar, alarms, reminders, thread cleanup",when_lead,"forbidden without approval: send, share, delete"
+Money & Debt,Money desk,"Bills, debt, subscriptions, collectors, payment prep",when_lead,"forbidden without approval: pay, send, share"
+VA Benefits,VA claims and housing benefits,"VA claims, HLR, exams, HUD-VASH, evidence prep",when_lead,"forbidden without approval: government_filing, send, file, share"
+File Vault,Records and vault,"Files, indexes, duplicates, backups, exposure checks",when_lead,"forbidden without approval: delete, share, file"
+School & Work,Career and school,"IBEW/ETASV, classes, jobs, time tickets",when_lead,"forbidden without approval: delete, file, pay, send, share"
+Photo Design & Creation,Photo and design,"Photos, design drafts, newsletters, creative assets",when_lead,"forbidden without approval: send, share"

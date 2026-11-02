@@ -28,7 +28,8 @@ Use this skill to save generated text content or create new text files in Dropbo
 7. After a successful create, report that the file was created, including the path_display when available, filename, and file ID.
 8. After a successful create, call `file_preview` with the returned file ID when the host supports previews, and include any open-in-Dropbox URL in the response.
 9. If `create_file` returns a name conflict, stop and ask the user before trying another name.
-10. If the user wants a shared link, switch to `share-dropbox-content`. Do not create a shared link from this skill.
+10. If create or folder creation fails, report the error with the destination path and ask how to proceed. Do not silently retry with a guessed path.
+11. If the user wants a shared link, switch to `share-dropbox-content`. Do not create a shared link from this skill.
 
 ## Confirmation Required
 

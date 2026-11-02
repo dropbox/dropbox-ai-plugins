@@ -6,6 +6,7 @@ Use it to locate files and folders, save generated text content, summarize suppo
 
 ## What You Can Do
 
+- Check which Dropbox account or team is connected.
 - Search Dropbox for files and folders by name, keyword, type, or location.
 - Browse folders and inspect file or folder metadata.
 - Save generated text content into Dropbox as new files.
@@ -20,13 +21,14 @@ Use it to locate files and folders, save generated text content, summarize suppo
 
 ## Included Skills
 
+- `check-dropbox-account`: identify the connected Dropbox account, team, and namespace roots.
 - `find-dropbox-content`: search Dropbox and browse folders without changing anything.
 - `inspect-dropbox-file`: inspect metadata, shared-link state, previews, and supported file content.
 - `download-dropbox-content`: generate temporary single-use download URLs for files.
 - `upload-to-dropbox`: save generated text content or create new text files in Dropbox.
 - `share-dropbox-content`: create, reuse, or inspect Dropbox shared links and invite viewers by email.
 - `collect-files-with-request`: create, inspect, and list Dropbox file requests.
-- `organize-dropbox-folder`: create folders, copy content, and move content into a cleaner structure.
+- `organize-dropbox-folder`: create folders, copy, move, or rename content into a cleaner structure.
 - `clean-up-dropbox-content`: review and delete Dropbox files or folders with explicit confirmation.
 
 
@@ -74,6 +76,7 @@ Public, anyone-with-the-link, team-wide, and editor links are not created by the
 
 ## Example Prompts
 
+- "Which Dropbox account am I connected to?"
 - "Find the Q4 planning deck in Dropbox."
 - "Summarize this Dropbox file and tell me when it was last modified."
 - "Give me a temporary download link for this Dropbox file."

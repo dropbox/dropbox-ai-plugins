@@ -81,6 +81,7 @@ MCP_HOST_TOOLS = {
 MCP_HOST_TOOLS["antigravity"] = MCP_HOST_TOOLS["claude"]
 
 SHARED_SKILL_NAMES = {
+    "check-dropbox-account",
     "clean-up-dropbox-content",
     "collect-files-with-request",
     "download-dropbox-content",

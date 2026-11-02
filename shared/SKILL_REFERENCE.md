@@ -2,6 +2,12 @@
 
 Shared documentation for Dropbox AI plugin skills. Host packages may expose a subset of these skills; Codex also keeps a host-specific `upload-to-dropbox` variant that uses `upload_file`.
 
+## check-dropbox-account
+
+- **Inputs:** optional question about account, team, or namespace roots.
+- **Outputs:** display name, account identifier, email when available, team context, and home or root namespace guidance.
+- **Example:** `Which Dropbox account am I connected to?`
+
 ## find-dropbox-content
 
 - **Inputs:** search query or folder path; optional filters such as extensions, categories, path scope, and modified-time bounds.
@@ -42,9 +48,9 @@ Shared documentation for Dropbox AI plugin skills. Host packages may expose a su
 
 ## organize-dropbox-folder
 
-- **Inputs:** source items, destination paths, copy-versus-move choice, and whether destination folders should be created.
-- **Outputs:** created folders, copied or moved items, pending async job status, and failed or skipped entries.
-- **Example:** `Copy final PDFs into the Final folder.`
+- **Inputs:** source items, destination paths or new names, copy/move/rename choice, autorename preference, and whether destination folders should be created.
+- **Outputs:** created folders, copied, moved, or renamed items, pending async job status, and failed or skipped entries with error details.
+- **Example:** `Rename draft-v3.pdf to launch-brief.pdf and copy final PDFs into the Final folder.`
 
 ## clean-up-dropbox-content
 

@@ -22,9 +22,10 @@ Use this skill to generate short-lived, single-use download URLs for Dropbox fil
 2. If the target is ambiguous, use `search` or `list_folder` and ask the user to choose.
 3. Call `get_file_metadata` to confirm the exact file. Prefer the returned file ID for follow-on calls.
 4. If the user mainly wants a visual preview or Open in Dropbox experience, prefer `file_preview` instead of a download URL.
-5. Call `download_link` only when the user explicitly wants a direct download URL or raw file bytes outside preview or text extraction.
+5. Call `download_link` only when the user explicitly wants a direct download URL or raw file bytes outside preview or text extraction. When the user confirmed multiple files, request those download links in parallel.
 6. Treat returned download URLs as sensitive, short-lived, and single-use. Do not store them in long-lived docs or shared notes unless the user asks.
-7. If the user also wants durable sharing, switch to `share-dropbox-content` for a shared link.
+7. If a download-link call fails, report the error with the path or file ID and continue with any remaining confirmed files.
+8. If the user also wants durable sharing, switch to `share-dropbox-content` for a shared link.
 
 ## Output
 

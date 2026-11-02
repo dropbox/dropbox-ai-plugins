@@ -1,7 +1,7 @@
 {
   "name": "dropbox",
-  "description": "The Dropbox plugin for Cursor connects your Dropbox files directly to Cursor, so you can search, reference, organize, save, preview, download, and share Dropbox content without switching tools. It respects your existing Dropbox permissions, and Cursor only works with files you already have access to.",
-  "version": "1.2.0",
+  "description": "The Dropbox plugin for Cursor connects your Dropbox files directly to Cursor, so you can check account context, search, organize, save, preview, download, and share Dropbox content without switching tools. It respects your existing Dropbox permissions, and Cursor only works with files you already have access to.",
+  "version": "1.3.0",
   "author": {
     "name": "Dropbox"
   },

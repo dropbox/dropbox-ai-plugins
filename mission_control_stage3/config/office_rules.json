@@ -1,0 +1,216 @@
+{
+  "offices": [
+    {
+      "name": "Mission Control",
+      "role": "Lead router / decision board",
+      "lane": "Intake, classification, routing, briefs, approval gate, escalation",
+      "keywords": [
+        "brief",
+        "decision",
+        "route",
+        "approve",
+        "escalate",
+        "mission control",
+        "queue",
+        "top 3"
+      ],
+      "allowed_actions": [
+        "intake",
+        "classify",
+        "route",
+        "validate",
+        "brief",
+        "escalate",
+        "audit",
+        "remind"
+      ],
+      "forbidden_without_approval": [
+        "send",
+        "pay",
+        "delete",
+        "share",
+        "file",
+        "government_filing"
+      ],
+      "may_contact_user": "when_lead",
+      "default_support": "Mail & Schedule",
+      "urgency_default": "medium"
+    },
+    {
+      "name": "Mail & Schedule",
+      "role": "Mailroom and calendar",
+      "lane": "Email drafts, calendar, alarms, reminders, thread cleanup",
+      "keywords": [
+        "email",
+        "mail",
+        "calendar",
+        "alarm",
+        "reminder",
+        "schedule",
+        "inbox",
+        "draft"
+      ],
+      "allowed_actions": [
+        "draft",
+        "schedule",
+        "remind",
+        "validate",
+        "summarize"
+      ],
+      "forbidden_without_approval": [
+        "send",
+        "share",
+        "delete"
+      ],
+      "may_contact_user": "when_lead",
+      "default_support": "Mission Control",
+      "urgency_default": "medium"
+    },
+    {
+      "name": "Money & Debt",
+      "role": "Money desk",
+      "lane": "Bills, debt, subscriptions, collectors, payment prep",
+      "keywords": [
+        "bill",
+        "debt",
+        "pay",
+        "subscription",
+        "collector",
+        "balance",
+        "invoice",
+        "money"
+      ],
+      "allowed_actions": [
+        "track",
+        "draft",
+        "validate",
+        "summarize"
+      ],
+      "forbidden_without_approval": [
+        "pay",
+        "send",
+        "share"
+      ],
+      "may_contact_user": "when_lead",
+      "default_support": "Mail & Schedule",
+      "urgency_default": "high"
+    },
+    {
+      "name": "VA Benefits",
+      "role": "VA claims and housing benefits",
+      "lane": "VA claims, HLR, exams, HUD-VASH, evidence prep",
+      "keywords": [
+        "va",
+        "hlr",
+        "claim",
+        "dbq",
+        "hud-vash",
+        "sccha",
+        "veteran",
+        "c&p"
+      ],
+      "allowed_actions": [
+        "draft",
+        "validate",
+        "track",
+        "summarize"
+      ],
+      "forbidden_without_approval": [
+        "government_filing",
+        "send",
+        "file",
+        "share"
+      ],
+      "may_contact_user": "when_lead",
+      "default_support": "File Vault",
+      "urgency_default": "high"
+    },
+    {
+      "name": "File Vault",
+      "role": "Records and vault",
+      "lane": "Files, indexes, duplicates, backups, exposure checks",
+      "keywords": [
+        "file",
+        "vault",
+        "duplicate",
+        "dropbox",
+        "backup",
+        "rename",
+        "folder",
+        "document"
+      ],
+      "allowed_actions": [
+        "organize",
+        "validate",
+        "index",
+        "summarize"
+      ],
+      "forbidden_without_approval": [
+        "delete",
+        "share",
+        "file"
+      ],
+      "may_contact_user": "when_lead",
+      "default_support": "Mission Control",
+      "urgency_default": "medium"
+    },
+    {
+      "name": "School & Work",
+      "role": "Career and school",
+      "lane": "IBEW/ETASV, classes, jobs, time tickets",
+      "keywords": [
+        "etasv",
+        "ibew",
+        "school",
+        "class",
+        "job",
+        "apprentice",
+        "work",
+        "career"
+      ],
+      "allowed_actions": [
+        "track",
+        "draft",
+        "validate",
+        "summarize"
+      ],
+      "forbidden_without_approval": [
+        "delete",
+        "file",
+        "pay",
+        "send",
+        "share"
+      ],
+      "may_contact_user": "when_lead",
+      "default_support": "Mail & Schedule",
+      "urgency_default": "medium"
+    },
+    {
+      "name": "Photo Design & Creation",
+      "role": "Photo and design",
+      "lane": "Photos, design drafts, newsletters, creative assets",
+      "keywords": [
+        "photo",
+        "design",
+        "newsletter",
+        "image",
+        "creative",
+        "visual",
+        "graphic"
+      ],
+      "allowed_actions": [
+        "draft",
+        "create",
+        "validate",
+        "summarize"
+      ],
+      "forbidden_without_approval": [
+        "send",
+        "share"
+      ],
+      "may_contact_user": "when_lead",
+      "default_support": "Mail & Schedule",
+      "urgency_default": "low"
+    }
+  ]
+}

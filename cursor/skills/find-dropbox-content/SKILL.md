@@ -18,13 +18,14 @@ Use this skill to locate relevant Dropbox files and folders without changing any
 ## Workflow
 
 1. Clarify the search target only if the user request is too broad to act on.
-2. Use `who_am_i` when team versus personal namespace context matters for interpreting paths or roots.
+2. Use `who_am_i` when team versus personal namespace context matters for interpreting paths or roots. If identity itself is the question, switch to `check-dropbox-account`.
 3. Use `search` for broad keyword, title, file type, or natural-language searches.
 4. When the user needs filters, exhaustive paging, or more than the first simplified page, use advanced `search` by including an extra parameter such as max_results, path, file_extensions, file_categories, filename_only, order_by, reverse_order, last_modified_after, or last_modified_before.
 5. When `search` returns a cursor and more results are needed, continue with `search` using the cursor only. Do not claim completeness while a cursor remains. For long exhaustive scans, present partial results and ask before continuing many pages.
 6. Use `list_folder` when the user names a folder or wants to browse a location. Continue with the returned cursor when more folder results are needed.
-7. Use `get_file_metadata` for strong candidates before presenting a final recommendation.
+7. Use `get_file_metadata` for strong candidates before presenting a final recommendation. When several candidates need enrichment, request those metadata lookups in parallel.
 8. Prefer returned file IDs for any follow-on Dropbox tool calls. Prefer path_display when showing paths to the user. Keep namespace paths intact when a tool returns them.
+9. If a lookup fails, report the error with the path or file ID that failed and continue with remaining candidates when possible.
 
 ## Output
 
@@ -53,6 +54,7 @@ Do not create, copy, move, delete, restore, download, or share content. If the u
 ## Do Not Use When
 
 - The user already provided an exact file and wants its content inspected. Use `inspect-dropbox-file`.
+- The user wants account or team identity details. Use `check-dropbox-account`.
 - The user wants a temporary download URL. Use `download-dropbox-content`.
 - The user explicitly asks to create a shared link. Use `share-dropbox-content`.
 - The user asks to share with named recipients. Use `share-dropbox-content`.

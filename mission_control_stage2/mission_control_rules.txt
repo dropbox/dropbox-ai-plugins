@@ -1,0 +1,36 @@
+Mission Control — Stage 2 Rules
+================================
+
+Source of truth = decisions list (decisions.csv) and the live queue (live_decisions.csv).
+Chat is coordination only — not the official record.
+
+Live items
+----------
+Only Active, Waiting, and Needs Approval items reach the user.
+Those rows appear in live_decisions.csv.
+
+Stale items
+-----------
+Stale items are archived or reactivated.
+Stale rows appear in stale_review.csv.
+Old items must be reviewed and closed or archived.
+
+Approvals and actions
+---------------------
+No office may send, pay, delete, share, or file without approval.
+Max 7 approvals per day.
+Drafts are not filings.
+Stage 2 may read, validate, route, summarize, alert, queue, and remind.
+Stage 2 may not send final messages, pay bills, delete files, share files, or file anything without approval.
+
+Offices and lanes
+-----------------
+One lead office and one support office per item.
+Only the lead office tells the user.
+No office crosses its lane.
+
+Escalation and reminders
+------------------------
+If an issue loops 3 times, escalate (see loop_alerts.csv).
+Calendar events and alarms are the reminder system (see reminder_log.csv).
+Daily brief summarizes active decisions, stale review, and loop alerts.

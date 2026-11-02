@@ -26,8 +26,9 @@ Use this skill to create or inspect Dropbox shared links, invite viewers by emai
 5. Use `get_shared_link_metadata` when the user provides or asks about a specific shared link.
 6. Before calling `create_shared_link`, summarize the exact sharing plan and ask for explicit confirmation. Include any viewer emails the user asked to invite.
 7. When the user asks to share with named people, pass their emails to `create_shared_link` as viewers. Do not invent email addresses.
-8. After sharing, report the resulting URL, whether the link was created or reused, effective access settings, invited viewers, and any warnings or share errors.
-9. If the user asks for a public, anyone-with-the-link, team-wide, or editor link, explain that this tool creates private view-only links and that broader link types must be managed in the Dropbox web UI.
+8. After sharing, report the resulting URL, whether the link was created or reused, effective access settings, invited viewers, and any warnings or share errors. When member addition partially fails, list successful invites and share_errors separately.
+9. If a share call fails, report the error code or message with the target path or file ID and ask how to proceed. Do not retry repeatedly on permission or policy errors.
+10. If the user asks for a public, anyone-with-the-link, team-wide, or editor link, explain that this tool creates private view-only links and that broader link types must be managed in the Dropbox web UI.
 
 ## Confirmation Required
 
