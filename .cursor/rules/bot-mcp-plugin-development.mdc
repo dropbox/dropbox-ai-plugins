@@ -1,0 +1,24 @@
+---
+description: Rules for developing Bot plugins, skills, and Dropbox MCP tools
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# Bot & MCP Plugin Development Rules
+
+## 1. Execution Workflow
+
+- **Scan -> Implement -> Validate -> Push:** Never skip validation before updating a PR.
+- Keep commits atomic and scoped to one enhancement wave at a time.
+
+## 2. Speed & Reliability Standards
+
+- **Async First:** Use non-blocking I/O and `Promise.all` (or equivalent concurrency/async batching) when querying multiple Dropbox endpoints or files.
+- **Error Handling:** Wrap all external Dropbox API / MCP tool calls in try/catch blocks with actionable error messages (include status code and file path/ID).
+- **Zero Breaking Changes:** Preserve existing tool names and parameter signatures unless explicitly told to deprecate them.
+
+## 3. Code & Docs Hygiene
+
+- Every new skill or MCP tool must have a matching update in the README/docs explaining its inputs, outputs, and usage example.
+- Run typecheck/lint before every commit.
+- For this repository, run `python3 mcp_host_skills_tests.py` and `python3 package_validation_tests.py` before every commit that touches plugins or skills.

@@ -1,11 +1,16 @@
 {
   "name": "dropbox-ai-plugins",
-  "owner": { "name": "Dropbox" },
+  "owner": {
+    "name": "Dropbox"
+  },
   "metadata": {
-    "description": "Dropbox AI plugin artifacts for Claude, OpenAI Codex, Google Antigravity, and Cursor.",
-    "version": "1.0.0"
+    "description": "Dropbox AI plugin artifacts for Claude, OpenAI Codex, Google Antigravity, and Cursor, with save, download, share, and organize skills.",
+    "version": "1.3.0"
   },
   "plugins": [
-    { "name": "dropbox", "source": "./cursor" }
+    {
+      "name": "dropbox",
+      "source": "./cursor"
+    }
   ]
 }

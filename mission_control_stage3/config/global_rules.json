@@ -1,0 +1,46 @@
+{
+  "stage": 3,
+  "source_of_truth": "data/decisions.csv",
+  "chat_is_official_record": false,
+  "live_statuses": ["Active", "Waiting", "Needs Approval"],
+  "stale_status": "Stale",
+  "max_approvals_per_day": 7,
+  "loop_escalate_at": 3,
+  "no_lane_crossing": true,
+  "reminder_system": "calendar_and_alarms",
+  "high_risk_actions": [
+    "send",
+    "pay",
+    "delete",
+    "share",
+    "file",
+    "government_filing"
+  ],
+  "safe_without_approval": [
+    "read",
+    "classify",
+    "route",
+    "validate",
+    "summarize",
+    "queue",
+    "remind",
+    "draft",
+    "audit"
+  ],
+  "rules": [
+    "Source of truth = decisions dataset.",
+    "Chat remains coordination only.",
+    "Only Active, Waiting, and Needs Approval items are live.",
+    "Stale items go to stale_review.csv.",
+    "No office may send, pay, delete, share private information, or file (including government filing) without approval.",
+    "No office crosses its lane.",
+    "One lead office and one support office per item.",
+    "Only the lead office tells the user.",
+    "Drafts are not filings.",
+    "If a loop repeats 3 times, escalate.",
+    "Max 7 approvals per day.",
+    "Calendar and alarms are the reminder system.",
+    "Keep a clear audit log for every action.",
+    "Keep all risky steps behind the approval gate."
+  ]
+}

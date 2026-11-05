@@ -3,7 +3,7 @@
   "name": "dropbox",
   "version": "1.0.0",
   "displayName": "Dropbox",
-  "description": "Connect Antigravity to Dropbox to search, inspect, summarize, share, collect uploads, organize folders, and clean up files with confirmation for write actions.",
+  "description": "Connect Antigravity to Dropbox to search, inspect, summarize, save, share, collect uploads, organize, and clean up files with confirmation.",
   "author": {
     "name": "Dropbox"
   },
@@ -17,9 +17,9 @@
     "folders"
   ],
   "suggestedPrompts": [
-    "Find and summarize the Q4 planning deck in Dropbox",
-    "Create a shared link for the Launch folder",
-    "Review duplicate exports in this folder and ask before deleting anything"
+    "Which Dropbox account am I connected to?",
+    "Save this summary to my Dropbox Projects folder",
+    "Give me a temporary download link for this Dropbox file"
   ],
   "logo": "./assets/logo.png"
 }

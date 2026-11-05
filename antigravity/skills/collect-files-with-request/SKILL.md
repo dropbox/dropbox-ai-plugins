@@ -24,9 +24,9 @@ Use this skill to help users collect files from others through Dropbox file requ
 3. Do not use a team root, such as `/`, or the user's personal root, such as `/FirstName LastName`, as the destination. Dropbox requires the file request destination to be a child folder under that folder, such as `/FirstName LastName/Invoices`.
 4. If the requested destination is a team root or the user's personal root, ask the user to confirm a child folder under that folder.
 5. If the destination folder does not exist and the user wants it created, use `create_folder` only after explicit confirmation.
-6. Before calling `create_file_request`, confirm the title, destination folder, deadline if applicable, and whether the request should be open or closed if that option is available.
+6. Before calling `create_file_request`, confirm the title, destination folder, deadline if applicable, and whether the request should be open or closed if that option is available. Deadlines require an eligible Dropbox plan; if a deadline create fails for plan reasons, explain that and get a second confirmation before creating without a deadline.
 7. Use `get_file_request` for a known raw request ID.
-8. Use `list_file_requests` when the user asks for existing requests or cannot identify one.
+8. Use `list_file_requests` when the user asks for existing requests or cannot identify one. Continue while the response indicates has_more or returns a cursor before claiming the listing is complete.
 9. After creating or finding a request, explain the request URL and where uploaded files will land.
 
 ## Confirmation Required
@@ -68,6 +68,7 @@ Do not create folders or file requests without explicit confirmation. Do not ass
 
 ## Do Not Use When
 
+- The user wants to upload or save their own content to Dropbox. Use `upload-to-dropbox`.
 - The user wants to share existing content. Use `share-dropbox-content`.
 - The user wants to organize existing files. Use `organize-dropbox-folder`.
 - The user wants to recover deleted files. Explain that recovery is unavailable until the Dropbox restore tool is exposed.

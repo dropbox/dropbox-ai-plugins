@@ -1,0 +1,32 @@
+Mission Control — Daily Brief (Stage 3)
+Generated: 2026-10-31T07:45:47+00:00
+
+Source of truth: data/decisions.csv
+Chat is coordination only.
+No send / pay / delete / share / file / government filing without approval.
+Only the lead office tells the user.
+
+Top 3 live items
+- [D004] Bill and subscription sweep | Waiting | urgency=high | lead=Money & Debt
+- [D001] ETASV refresh and grab | Active | urgency=medium | lead=School & Work
+- [D003] Calendar reminder cleanup | Needs Approval | urgency=medium | lead=Mail & Schedule
+
+Live queue (6) — Active / Waiting / Needs Approval
+Needs Approval: 2 | Pending approval rows: 0 (max 7/day)
+- [D001] ETASV refresh and grab | Active | lead=School & Work support=Mail & Schedule
+- [D003] Calendar reminder cleanup | Needs Approval | lead=Mail & Schedule support=Mission Control
+- [D004] Bill and subscription sweep | Waiting | lead=Money & Debt support=Mail & Schedule
+- [D005] Duplicate cleanup | Needs Approval | lead=File Vault support=Photo Design & Creation
+- [D006] Newsletter draft | Active | lead=Photo Design & Creation support=Mail & Schedule
+- [D007] Daily brief | Active | lead=Mission Control support=Mail & Schedule
+
+Stale review (2) — archive or resolve
+- [D002] Old HLR review | loops=2 | lead=VA Benefits
+- [D008] Old ETASV reminder | loops=3 | lead=School & Work
+
+Loop alerts (1) — escalate at 3+
+- [D008] School & Work: loop_count 3 >= 3; escalate
+
+Reminders: data/reminder_log.csv (calendar + alarms).
+Approvals: data/approvals.csv (gate only — Stage 3 never executes risky actions).
+Audit: data/audit_log.csv

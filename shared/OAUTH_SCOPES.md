@@ -46,7 +46,7 @@ The Claude artifact points at `claude_app_mcp`.
 | `create_folder` | `files.content.write` | Creates a Dropbox folder. |
 | `create_file` | `files.content.write` | Creates a text-oriented Dropbox file. |
 | `upload_file` | `files.content.write` | Uploads files or content to Dropbox. |
-| `create_shared_link` | `sharing.write` | Creates or reuses a shared link. |
+| `create_shared_link` | `sharing.write` | Creates or reuses a shared link and can invite viewers by email. |
 | `move` | `files.content.write` | Moves Dropbox content. |
 | `copy` | `files.content.write` | Copies Dropbox content. |
 | `delete` | `files.content.write` | Deletes Dropbox content. |
@@ -73,7 +73,7 @@ The Cursor artifact points at `cursor_app_mcp`.
 | `create_folder` | `files.content.write` | Creates a Dropbox folder. |
 | `create_file` | `files.content.write` | Creates a text-oriented Dropbox file. |
 | `upload_file` | `files.content.write` | Uploads files or content to Dropbox. |
-| `create_shared_link` | `sharing.write` | Creates or reuses a shared link. |
+| `create_shared_link` | `sharing.write` | Creates or reuses a shared link and can invite viewers by email. |
 | `move` | `files.content.write` | Moves Dropbox content. |
 | `copy` | `files.content.write` | Copies Dropbox content. |
 | `delete` | `files.content.write` | Deletes Dropbox content. |
@@ -101,7 +101,7 @@ The Antigravity artifact points at `gemini_app_mcp`.
 | `create_folder` | `files.content.write` | Creates a Dropbox folder. |
 | `create_file` | `files.content.write` | Creates a text-oriented Dropbox file. |
 | `upload_file` | `files.content.write` | Uploads files or content to Dropbox. |
-| `create_shared_link` | `sharing.write` | Creates or reuses a shared link. |
+| `create_shared_link` | `sharing.write` | Creates or reuses a shared link and can invite viewers by email. |
 | `move` | `files.content.write` | Moves Dropbox content. |
 | `copy` | `files.content.write` | Copies Dropbox content. |
 | `delete` | `files.content.write` | Deletes Dropbox content. |
